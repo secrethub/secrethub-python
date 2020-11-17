@@ -7,5 +7,4 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - run: python -c "import os, sys; print(os.path.dirname(sys.executable))"
-      - run: cd "C:\Program Files\Python" && tree
+      - run: cd "C:\hostedtoolcache\windows\Python\3.7.9\" && tree
