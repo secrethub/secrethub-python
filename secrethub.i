@@ -4,8 +4,6 @@
 #include "datetime.h"
 %}
 
-%typemap (varin) cgoTime {}
-
 %typemap (out) cgoTime CreatedAt {
     PyDateTime_IMPORT;
     double doubleValue = (int)$1;
