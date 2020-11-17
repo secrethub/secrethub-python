@@ -131,4 +131,12 @@ class SecretVersion(object):
 _SecretHub.SecretVersion_swigregister(SecretVersion)
 
 
+import os
+
+def ExportEnv(self, env):
+    for key, value in env.items():
+        os.environ[key] = value
+Client.ExportEnv = ExportEnv
+
+
 
