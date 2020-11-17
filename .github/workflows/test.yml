@@ -7,4 +7,5 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - run: cd "C:\Program Files\" && tree
+      - run: python -c "import os, sys; print(os.path.dirname(sys.executable))"
+      - run: cd "C:\Program Files\Python" && tree
