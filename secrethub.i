@@ -1,4 +1,4 @@
-%module SecretHub
+%module secrethub
 
 %{
 #include "datetime.h"

@@ -33,7 +33,7 @@ client: $(XGO_DIR)/secrethub_wrapper.go
 compile: $(DEPS)
 	@echo "Compiling..."
 	@gcc -c -O2 -fpic -o secrethub_wrap.o -I/usr/include/python3.8 secrethub_wrap.c
-	@gcc -shared -fPIC $(OBJ) -o _SecretHub.so
+	@gcc -shared -fPIC $(OBJ) -o _secrethub.so
 endif
 
 .PHONY: swig

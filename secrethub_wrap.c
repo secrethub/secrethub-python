@@ -2686,16 +2686,16 @@ static swig_module_info swig_module = {swig_types, 5, 0, 0, 0, 0};
 #define SWIG_TypeQuery SWIG_Python_TypeQuery
 
 /*-----------------------------------------------
-              @(target):= _SecretHub.so
+              @(target):= _secrethub.so
   ------------------------------------------------*/
 #if PY_VERSION_HEX >= 0x03000000
-#  define SWIG_init    PyInit__SecretHub
+#  define SWIG_init    PyInit__secrethub
 
 #else
-#  define SWIG_init    init_SecretHub
+#  define SWIG_init    init_secrethub
 
 #endif
-#define SWIG_name    "_SecretHub"
+#define SWIG_name    "_secrethub"
 
 #define SWIGVERSION 0x040002 
 #define SWIG_VERSION SWIGVERSION
