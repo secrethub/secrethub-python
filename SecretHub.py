@@ -69,26 +69,26 @@ class Client(object):
         _SecretHub.Client_swiginit(self, _SecretHub.new_Client())
     __swig_destroy__ = _SecretHub.delete_Client
 
-    def Read(self, path):
-        return _SecretHub.Client_Read(self, path)
+    def read(self, path):
+        return _SecretHub.Client_read(self, path)
 
-    def ReadString(self, path):
-        return _SecretHub.Client_ReadString(self, path)
+    def read_string(self, path):
+        return _SecretHub.Client_read_string(self, path)
 
-    def Resolve(self, path):
-        return _SecretHub.Client_Resolve(self, path)
+    def resolve(self, path):
+        return _SecretHub.Client_resolve(self, path)
 
-    def ResolveEnv(self):
-        return _SecretHub.Client_ResolveEnv(self)
+    def resolve_env(self):
+        return _SecretHub.Client_resolve_env(self)
 
-    def Exists(self, path):
-        return _SecretHub.Client_Exists(self, path)
+    def exists(self, path):
+        return _SecretHub.Client_exists(self, path)
 
-    def Remove(self, path):
-        return _SecretHub.Client_Remove(self, path)
+    def remove(self, path):
+        return _SecretHub.Client_remove(self, path)
 
-    def Write(self, path, secret):
-        return _SecretHub.Client_Write(self, path, secret)
+    def write(self, path, secret):
+        return _SecretHub.Client_write(self, path, secret)
 
 # Register Client in _SecretHub:
 _SecretHub.Client_swigregister(Client)
@@ -99,15 +99,15 @@ class Secret(object):
     def __init__(self, *args, **kwargs):
         raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
-    SecretID = property(_SecretHub.Secret_SecretID_get)
-    DirID = property(_SecretHub.Secret_DirID_get)
-    RepoID = property(_SecretHub.Secret_RepoID_get)
-    Name = property(_SecretHub.Secret_Name_get)
-    BlindName = property(_SecretHub.Secret_BlindName_get)
-    VersionCount = property(_SecretHub.Secret_VersionCount_get)
-    LatestVersion = property(_SecretHub.Secret_LatestVersion_get)
-    Status = property(_SecretHub.Secret_Status_get)
-    CreatedAt = property(_SecretHub.Secret_CreatedAt_get)
+    secret_id = property(_SecretHub.Secret_secret_id_get)
+    dir_id = property(_SecretHub.Secret_dir_id_get)
+    repo_id = property(_SecretHub.Secret_repo_id_get)
+    name = property(_SecretHub.Secret_name_get)
+    blind_name = property(_SecretHub.Secret_blind_name_get)
+    version_count = property(_SecretHub.Secret_version_count_get)
+    latest_version = property(_SecretHub.Secret_latest_version_get)
+    status = property(_SecretHub.Secret_status_get)
+    created_at = property(_SecretHub.Secret_created_at_get)
     __swig_destroy__ = _SecretHub.delete_Secret
 
 # Register Secret in _SecretHub:
@@ -119,12 +119,12 @@ class SecretVersion(object):
     def __init__(self, *args, **kwargs):
         raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
-    SecretVersionID = property(_SecretHub.SecretVersion_SecretVersionID_get)
-    Secret = property(_SecretHub.SecretVersion_Secret_get)
-    Version = property(_SecretHub.SecretVersion_Version_get)
-    Data = property(_SecretHub.SecretVersion_Data_get)
-    CreatedAt = property(_SecretHub.SecretVersion_CreatedAt_get)
-    Status = property(_SecretHub.SecretVersion_Status_get)
+    secret_version_id = property(_SecretHub.SecretVersion_secret_version_id_get)
+    secret = property(_SecretHub.SecretVersion_secret_get)
+    version = property(_SecretHub.SecretVersion_version_get)
+    data = property(_SecretHub.SecretVersion_data_get)
+    created_at = property(_SecretHub.SecretVersion_created_at_get)
+    status = property(_SecretHub.SecretVersion_status_get)
     __swig_destroy__ = _SecretHub.delete_SecretVersion
 
 # Register SecretVersion in _SecretHub:
@@ -133,10 +133,10 @@ _SecretHub.SecretVersion_swigregister(SecretVersion)
 
 import os
 
-def ExportEnv(self, env):
+def export_env(self, env):
     for key, value in env.items():
         os.environ[key] = value
-Client.ExportEnv = ExportEnv
+Client.export_env = export_env
 
 
 

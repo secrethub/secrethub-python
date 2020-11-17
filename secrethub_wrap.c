@@ -2932,7 +2932,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Client_Read(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Client_read(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Client *arg1 = (struct Client *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -2949,15 +2949,15 @@ SWIGINTERN PyObject *_wrap_Client_Read(PyObject *SWIGUNUSEDPARM(self), PyObject 
   {
     arg3 = &temp3;
   }
-  if (!SWIG_Python_UnpackTuple(args, "Client_Read", 2, 2, swig_obj)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "Client_read", 2, 2, swig_obj)) SWIG_fail;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Client, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_Read" "', argument " "1"" of type '" "struct Client *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_read" "', argument " "1"" of type '" "struct Client *""'"); 
   }
   arg1 = (struct Client *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Client_Read" "', argument " "2"" of type '" "char *""'");
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Client_read" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = (char *)(buf2);
   result = Client_Read(arg1,arg2,arg3);
@@ -2976,7 +2976,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Client_ReadString(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Client_read_string(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Client *arg1 = (struct Client *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -2993,15 +2993,15 @@ SWIGINTERN PyObject *_wrap_Client_ReadString(PyObject *SWIGUNUSEDPARM(self), PyO
   {
     arg3 = &temp3;
   }
-  if (!SWIG_Python_UnpackTuple(args, "Client_ReadString", 2, 2, swig_obj)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "Client_read_string", 2, 2, swig_obj)) SWIG_fail;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Client, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_ReadString" "', argument " "1"" of type '" "struct Client *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_read_string" "', argument " "1"" of type '" "struct Client *""'"); 
   }
   arg1 = (struct Client *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Client_ReadString" "', argument " "2"" of type '" "char *""'");
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Client_read_string" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = (char *)(buf2);
   result = (char *)Client_ReadString(arg1,arg2,arg3);
@@ -3020,7 +3020,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Client_Resolve(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Client_resolve(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Client *arg1 = (struct Client *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -3037,15 +3037,15 @@ SWIGINTERN PyObject *_wrap_Client_Resolve(PyObject *SWIGUNUSEDPARM(self), PyObje
   {
     arg3 = &temp3;
   }
-  if (!SWIG_Python_UnpackTuple(args, "Client_Resolve", 2, 2, swig_obj)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "Client_resolve", 2, 2, swig_obj)) SWIG_fail;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Client, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_Resolve" "', argument " "1"" of type '" "struct Client *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_resolve" "', argument " "1"" of type '" "struct Client *""'"); 
   }
   arg1 = (struct Client *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Client_Resolve" "', argument " "2"" of type '" "char *""'");
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Client_resolve" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = (char *)(buf2);
   result = (char *)Client_Resolve(arg1,arg2,arg3);
@@ -3064,7 +3064,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Client_ResolveEnv(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Client_resolve_env(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Client *arg1 = (struct Client *) 0 ;
   char **arg2 = (char **) 0 ;
@@ -3081,7 +3081,7 @@ SWIGINTERN PyObject *_wrap_Client_ResolveEnv(PyObject *SWIGUNUSEDPARM(self), PyO
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Client, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_ResolveEnv" "', argument " "1"" of type '" "struct Client *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_resolve_env" "', argument " "1"" of type '" "struct Client *""'"); 
   }
   arg1 = (struct Client *)(argp1);
   result = (char *)Client_ResolveEnv(arg1,arg2);
@@ -3103,7 +3103,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Client_Exists(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Client_exists(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Client *arg1 = (struct Client *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -3120,15 +3120,15 @@ SWIGINTERN PyObject *_wrap_Client_Exists(PyObject *SWIGUNUSEDPARM(self), PyObjec
   {
     arg3 = &temp3;
   }
-  if (!SWIG_Python_UnpackTuple(args, "Client_Exists", 2, 2, swig_obj)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "Client_exists", 2, 2, swig_obj)) SWIG_fail;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Client, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_Exists" "', argument " "1"" of type '" "struct Client *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_exists" "', argument " "1"" of type '" "struct Client *""'"); 
   }
   arg1 = (struct Client *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Client_Exists" "', argument " "2"" of type '" "char *""'");
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Client_exists" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = (char *)(buf2);
   result = (bool)Client_Exists(arg1,arg2,arg3);
@@ -3147,7 +3147,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Client_Remove(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Client_remove(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Client *arg1 = (struct Client *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -3163,15 +3163,15 @@ SWIGINTERN PyObject *_wrap_Client_Remove(PyObject *SWIGUNUSEDPARM(self), PyObjec
   {
     arg3 = &temp3;
   }
-  if (!SWIG_Python_UnpackTuple(args, "Client_Remove", 2, 2, swig_obj)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "Client_remove", 2, 2, swig_obj)) SWIG_fail;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Client, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_Remove" "', argument " "1"" of type '" "struct Client *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_remove" "', argument " "1"" of type '" "struct Client *""'"); 
   }
   arg1 = (struct Client *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Client_Remove" "', argument " "2"" of type '" "char *""'");
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Client_remove" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = (char *)(buf2);
   Client_Remove(arg1,arg2,arg3);
@@ -3190,7 +3190,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Client_Write(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Client_write(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Client *arg1 = (struct Client *) 0 ;
   char *arg2 = (char *) 0 ;
@@ -3210,20 +3210,20 @@ SWIGINTERN PyObject *_wrap_Client_Write(PyObject *SWIGUNUSEDPARM(self), PyObject
   {
     arg4 = &temp4;
   }
-  if (!SWIG_Python_UnpackTuple(args, "Client_Write", 3, 3, swig_obj)) SWIG_fail;
+  if (!SWIG_Python_UnpackTuple(args, "Client_write", 3, 3, swig_obj)) SWIG_fail;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Client, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_Write" "', argument " "1"" of type '" "struct Client *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Client_write" "', argument " "1"" of type '" "struct Client *""'"); 
   }
   arg1 = (struct Client *)(argp1);
   res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
   if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Client_Write" "', argument " "2"" of type '" "char *""'");
+    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Client_write" "', argument " "2"" of type '" "char *""'");
   }
   arg2 = (char *)(buf2);
   res3 = SWIG_AsCharPtrAndSize(swig_obj[2], &buf3, NULL, &alloc3);
   if (!SWIG_IsOK(res3)) {
-    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Client_Write" "', argument " "3"" of type '" "char *""'");
+    SWIG_exception_fail(SWIG_ArgError(res3), "in method '" "Client_write" "', argument " "3"" of type '" "char *""'");
   }
   arg3 = (char *)(buf3);
   Client_Write(arg1,arg2,arg3,arg4);
@@ -3255,7 +3255,7 @@ SWIGINTERN PyObject *Client_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *a
   return SWIG_Python_InitShadowInstance(args);
 }
 
-SWIGINTERN PyObject *_wrap_Secret_SecretID_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Secret_secret_id_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
   void *argp1 = 0 ;
@@ -3267,7 +3267,7 @@ SWIGINTERN PyObject *_wrap_Secret_SecretID_get(PyObject *SWIGUNUSEDPARM(self), P
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_SecretID_get" "', argument " "1"" of type '" "struct Secret *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_secret_id_get" "', argument " "1"" of type '" "struct Secret *""'"); 
   }
   arg1 = (struct Secret *)(argp1);
   result =  ((arg1)->SecretID);
@@ -3283,7 +3283,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Secret_DirID_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Secret_dir_id_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
   void *argp1 = 0 ;
@@ -3295,7 +3295,7 @@ SWIGINTERN PyObject *_wrap_Secret_DirID_get(PyObject *SWIGUNUSEDPARM(self), PyOb
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_DirID_get" "', argument " "1"" of type '" "struct Secret *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_dir_id_get" "', argument " "1"" of type '" "struct Secret *""'"); 
   }
   arg1 = (struct Secret *)(argp1);
   result =  ((arg1)->DirID);
@@ -3311,7 +3311,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Secret_RepoID_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Secret_repo_id_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
   void *argp1 = 0 ;
@@ -3323,7 +3323,7 @@ SWIGINTERN PyObject *_wrap_Secret_RepoID_get(PyObject *SWIGUNUSEDPARM(self), PyO
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_RepoID_get" "', argument " "1"" of type '" "struct Secret *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_repo_id_get" "', argument " "1"" of type '" "struct Secret *""'"); 
   }
   arg1 = (struct Secret *)(argp1);
   result =  ((arg1)->RepoID);
@@ -3339,7 +3339,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Secret_Name_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Secret_name_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
   void *argp1 = 0 ;
@@ -3351,7 +3351,7 @@ SWIGINTERN PyObject *_wrap_Secret_Name_get(PyObject *SWIGUNUSEDPARM(self), PyObj
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_Name_get" "', argument " "1"" of type '" "struct Secret *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_name_get" "', argument " "1"" of type '" "struct Secret *""'"); 
   }
   arg1 = (struct Secret *)(argp1);
   result = (char *) ((arg1)->Name);
@@ -3362,7 +3362,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Secret_BlindName_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Secret_blind_name_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
   void *argp1 = 0 ;
@@ -3374,7 +3374,7 @@ SWIGINTERN PyObject *_wrap_Secret_BlindName_get(PyObject *SWIGUNUSEDPARM(self), 
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_BlindName_get" "', argument " "1"" of type '" "struct Secret *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_blind_name_get" "', argument " "1"" of type '" "struct Secret *""'"); 
   }
   arg1 = (struct Secret *)(argp1);
   result = (char *) ((arg1)->BlindName);
@@ -3385,7 +3385,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Secret_VersionCount_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Secret_version_count_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
   void *argp1 = 0 ;
@@ -3397,7 +3397,7 @@ SWIGINTERN PyObject *_wrap_Secret_VersionCount_get(PyObject *SWIGUNUSEDPARM(self
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_VersionCount_get" "', argument " "1"" of type '" "struct Secret *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_version_count_get" "', argument " "1"" of type '" "struct Secret *""'"); 
   }
   arg1 = (struct Secret *)(argp1);
   result = (int) ((arg1)->VersionCount);
@@ -3408,7 +3408,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Secret_LatestVersion_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Secret_latest_version_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
   void *argp1 = 0 ;
@@ -3420,7 +3420,7 @@ SWIGINTERN PyObject *_wrap_Secret_LatestVersion_get(PyObject *SWIGUNUSEDPARM(sel
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_LatestVersion_get" "', argument " "1"" of type '" "struct Secret *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_latest_version_get" "', argument " "1"" of type '" "struct Secret *""'"); 
   }
   arg1 = (struct Secret *)(argp1);
   result = (int) ((arg1)->LatestVersion);
@@ -3431,7 +3431,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Secret_Status_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Secret_status_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
   void *argp1 = 0 ;
@@ -3443,7 +3443,7 @@ SWIGINTERN PyObject *_wrap_Secret_Status_get(PyObject *SWIGUNUSEDPARM(self), PyO
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_Status_get" "', argument " "1"" of type '" "struct Secret *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_status_get" "', argument " "1"" of type '" "struct Secret *""'"); 
   }
   arg1 = (struct Secret *)(argp1);
   result = (char *) ((arg1)->Status);
@@ -3454,7 +3454,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Secret_CreatedAt_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_Secret_created_at_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
   void *argp1 = 0 ;
@@ -3466,7 +3466,7 @@ SWIGINTERN PyObject *_wrap_Secret_CreatedAt_get(PyObject *SWIGUNUSEDPARM(self), 
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_CreatedAt_get" "', argument " "1"" of type '" "struct Secret *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_created_at_get" "', argument " "1"" of type '" "struct Secret *""'"); 
   }
   arg1 = (struct Secret *)(argp1);
   result =  ((arg1)->CreatedAt);
@@ -3511,7 +3511,7 @@ SWIGINTERN PyObject *Secret_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObjec
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_SecretVersion_SecretVersionID_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_SecretVersion_secret_version_id_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
   void *argp1 = 0 ;
@@ -3523,7 +3523,7 @@ SWIGINTERN PyObject *_wrap_SecretVersion_SecretVersionID_get(PyObject *SWIGUNUSE
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_SecretVersion, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_SecretVersionID_get" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_secret_version_id_get" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
   }
   arg1 = (struct SecretVersion *)(argp1);
   result =  ((arg1)->SecretVersionID);
@@ -3539,7 +3539,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_SecretVersion_Secret_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_SecretVersion_secret_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
   void *argp1 = 0 ;
@@ -3551,7 +3551,7 @@ SWIGINTERN PyObject *_wrap_SecretVersion_Secret_get(PyObject *SWIGUNUSEDPARM(sel
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_SecretVersion, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_Secret_get" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_secret_get" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
   }
   arg1 = (struct SecretVersion *)(argp1);
   result = (struct Secret *)& ((arg1)->Secret);
@@ -3562,7 +3562,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_SecretVersion_Version_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_SecretVersion_version_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
   void *argp1 = 0 ;
@@ -3574,7 +3574,7 @@ SWIGINTERN PyObject *_wrap_SecretVersion_Version_get(PyObject *SWIGUNUSEDPARM(se
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_SecretVersion, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_Version_get" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_version_get" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
   }
   arg1 = (struct SecretVersion *)(argp1);
   result = (int) ((arg1)->Version);
@@ -3585,7 +3585,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_SecretVersion_Data_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_SecretVersion_data_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
   void *argp1 = 0 ;
@@ -3597,7 +3597,7 @@ SWIGINTERN PyObject *_wrap_SecretVersion_Data_get(PyObject *SWIGUNUSEDPARM(self)
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_SecretVersion, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_Data_get" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_data_get" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
   }
   arg1 = (struct SecretVersion *)(argp1);
   result = (char *) ((arg1)->Data);
@@ -3608,7 +3608,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_SecretVersion_CreatedAt_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_SecretVersion_created_at_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
   void *argp1 = 0 ;
@@ -3620,7 +3620,7 @@ SWIGINTERN PyObject *_wrap_SecretVersion_CreatedAt_get(PyObject *SWIGUNUSEDPARM(
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_SecretVersion, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_CreatedAt_get" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_created_at_get" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
   }
   arg1 = (struct SecretVersion *)(argp1);
   result =  ((arg1)->CreatedAt);
@@ -3636,7 +3636,7 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_SecretVersion_Status_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+SWIGINTERN PyObject *_wrap_SecretVersion_status_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
   void *argp1 = 0 ;
@@ -3648,7 +3648,7 @@ SWIGINTERN PyObject *_wrap_SecretVersion_Status_get(PyObject *SWIGUNUSEDPARM(sel
   swig_obj[0] = args;
   res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_SecretVersion, 0 |  0 );
   if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_Status_get" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
+    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_status_get" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
   }
   arg1 = (struct SecretVersion *)(argp1);
   result = (char *) ((arg1)->Status);
@@ -3692,32 +3692,32 @@ static PyMethodDef SwigMethods[] = {
 	 { "SWIG_PyInstanceMethod_New", SWIG_PyInstanceMethod_New, METH_O, NULL},
 	 { "new_Client", _wrap_new_Client, METH_NOARGS, NULL},
 	 { "delete_Client", _wrap_delete_Client, METH_O, NULL},
-	 { "Client_Read", _wrap_Client_Read, METH_VARARGS, NULL},
-	 { "Client_ReadString", _wrap_Client_ReadString, METH_VARARGS, NULL},
-	 { "Client_Resolve", _wrap_Client_Resolve, METH_VARARGS, NULL},
-	 { "Client_ResolveEnv", _wrap_Client_ResolveEnv, METH_O, NULL},
-	 { "Client_Exists", _wrap_Client_Exists, METH_VARARGS, NULL},
-	 { "Client_Remove", _wrap_Client_Remove, METH_VARARGS, NULL},
-	 { "Client_Write", _wrap_Client_Write, METH_VARARGS, NULL},
+	 { "Client_read", _wrap_Client_read, METH_VARARGS, NULL},
+	 { "Client_read_string", _wrap_Client_read_string, METH_VARARGS, NULL},
+	 { "Client_resolve", _wrap_Client_resolve, METH_VARARGS, NULL},
+	 { "Client_resolve_env", _wrap_Client_resolve_env, METH_O, NULL},
+	 { "Client_exists", _wrap_Client_exists, METH_VARARGS, NULL},
+	 { "Client_remove", _wrap_Client_remove, METH_VARARGS, NULL},
+	 { "Client_write", _wrap_Client_write, METH_VARARGS, NULL},
 	 { "Client_swigregister", Client_swigregister, METH_O, NULL},
 	 { "Client_swiginit", Client_swiginit, METH_VARARGS, NULL},
-	 { "Secret_SecretID_get", _wrap_Secret_SecretID_get, METH_O, NULL},
-	 { "Secret_DirID_get", _wrap_Secret_DirID_get, METH_O, NULL},
-	 { "Secret_RepoID_get", _wrap_Secret_RepoID_get, METH_O, NULL},
-	 { "Secret_Name_get", _wrap_Secret_Name_get, METH_O, NULL},
-	 { "Secret_BlindName_get", _wrap_Secret_BlindName_get, METH_O, NULL},
-	 { "Secret_VersionCount_get", _wrap_Secret_VersionCount_get, METH_O, NULL},
-	 { "Secret_LatestVersion_get", _wrap_Secret_LatestVersion_get, METH_O, NULL},
-	 { "Secret_Status_get", _wrap_Secret_Status_get, METH_O, NULL},
-	 { "Secret_CreatedAt_get", _wrap_Secret_CreatedAt_get, METH_O, NULL},
+	 { "Secret_secret_id_get", _wrap_Secret_secret_id_get, METH_O, NULL},
+	 { "Secret_dir_id_get", _wrap_Secret_dir_id_get, METH_O, NULL},
+	 { "Secret_repo_id_get", _wrap_Secret_repo_id_get, METH_O, NULL},
+	 { "Secret_name_get", _wrap_Secret_name_get, METH_O, NULL},
+	 { "Secret_blind_name_get", _wrap_Secret_blind_name_get, METH_O, NULL},
+	 { "Secret_version_count_get", _wrap_Secret_version_count_get, METH_O, NULL},
+	 { "Secret_latest_version_get", _wrap_Secret_latest_version_get, METH_O, NULL},
+	 { "Secret_status_get", _wrap_Secret_status_get, METH_O, NULL},
+	 { "Secret_created_at_get", _wrap_Secret_created_at_get, METH_O, NULL},
 	 { "delete_Secret", _wrap_delete_Secret, METH_O, NULL},
 	 { "Secret_swigregister", Secret_swigregister, METH_O, NULL},
-	 { "SecretVersion_SecretVersionID_get", _wrap_SecretVersion_SecretVersionID_get, METH_O, NULL},
-	 { "SecretVersion_Secret_get", _wrap_SecretVersion_Secret_get, METH_O, NULL},
-	 { "SecretVersion_Version_get", _wrap_SecretVersion_Version_get, METH_O, NULL},
-	 { "SecretVersion_Data_get", _wrap_SecretVersion_Data_get, METH_O, NULL},
-	 { "SecretVersion_CreatedAt_get", _wrap_SecretVersion_CreatedAt_get, METH_O, NULL},
-	 { "SecretVersion_Status_get", _wrap_SecretVersion_Status_get, METH_O, NULL},
+	 { "SecretVersion_secret_version_id_get", _wrap_SecretVersion_secret_version_id_get, METH_O, NULL},
+	 { "SecretVersion_secret_get", _wrap_SecretVersion_secret_get, METH_O, NULL},
+	 { "SecretVersion_version_get", _wrap_SecretVersion_version_get, METH_O, NULL},
+	 { "SecretVersion_data_get", _wrap_SecretVersion_data_get, METH_O, NULL},
+	 { "SecretVersion_created_at_get", _wrap_SecretVersion_created_at_get, METH_O, NULL},
+	 { "SecretVersion_status_get", _wrap_SecretVersion_status_get, METH_O, NULL},
 	 { "delete_SecretVersion", _wrap_delete_SecretVersion, METH_O, NULL},
 	 { "SecretVersion_swigregister", SecretVersion_swigregister, METH_O, NULL},
 	 { NULL, NULL, 0, NULL }

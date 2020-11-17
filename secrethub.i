@@ -33,13 +33,15 @@ PyObject *py_json = NULL;
     Py_DECREF(str);
 }
 
+%rename("%(undercase)s", %$ismember, %$not "match$name"="Client") "";
+
 %include secrethub-xgo/secrethub.i
 
 %pythoncode %{
 import os
 
-def ExportEnv(self, env):
+def export_env(self, env):
     for key, value in env.items():
         os.environ[key] = value
-Client.ExportEnv = ExportEnv
+Client.export_env = export_env
 %}
