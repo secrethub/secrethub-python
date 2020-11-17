@@ -99,15 +99,15 @@ class Secret(object):
     def __init__(self, *args, **kwargs):
         raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
-    SecretID = property(_SecretHub.Secret_SecretID_get, _SecretHub.Secret_SecretID_set)
-    DirID = property(_SecretHub.Secret_DirID_get, _SecretHub.Secret_DirID_set)
-    RepoID = property(_SecretHub.Secret_RepoID_get, _SecretHub.Secret_RepoID_set)
-    Name = property(_SecretHub.Secret_Name_get, _SecretHub.Secret_Name_set)
-    BlindName = property(_SecretHub.Secret_BlindName_get, _SecretHub.Secret_BlindName_set)
-    VersionCount = property(_SecretHub.Secret_VersionCount_get, _SecretHub.Secret_VersionCount_set)
-    LatestVersion = property(_SecretHub.Secret_LatestVersion_get, _SecretHub.Secret_LatestVersion_set)
-    Status = property(_SecretHub.Secret_Status_get, _SecretHub.Secret_Status_set)
-    CreatedAt = property(_SecretHub.Secret_CreatedAt_get, _SecretHub.Secret_CreatedAt_set)
+    SecretID = property(_SecretHub.Secret_SecretID_get)
+    DirID = property(_SecretHub.Secret_DirID_get)
+    RepoID = property(_SecretHub.Secret_RepoID_get)
+    Name = property(_SecretHub.Secret_Name_get)
+    BlindName = property(_SecretHub.Secret_BlindName_get)
+    VersionCount = property(_SecretHub.Secret_VersionCount_get)
+    LatestVersion = property(_SecretHub.Secret_LatestVersion_get)
+    Status = property(_SecretHub.Secret_Status_get)
+    CreatedAt = property(_SecretHub.Secret_CreatedAt_get)
     __swig_destroy__ = _SecretHub.delete_Secret
 
 # Register Secret in _SecretHub:
@@ -119,12 +119,12 @@ class SecretVersion(object):
     def __init__(self, *args, **kwargs):
         raise AttributeError("No constructor defined")
     __repr__ = _swig_repr
-    SecretVersionID = property(_SecretHub.SecretVersion_SecretVersionID_get, _SecretHub.SecretVersion_SecretVersionID_set)
-    Secret = property(_SecretHub.SecretVersion_Secret_get, _SecretHub.SecretVersion_Secret_set)
-    Version = property(_SecretHub.SecretVersion_Version_get, _SecretHub.SecretVersion_Version_set)
-    Data = property(_SecretHub.SecretVersion_Data_get, _SecretHub.SecretVersion_Data_set)
-    CreatedAt = property(_SecretHub.SecretVersion_CreatedAt_get, _SecretHub.SecretVersion_CreatedAt_set)
-    Status = property(_SecretHub.SecretVersion_Status_get, _SecretHub.SecretVersion_Status_set)
+    SecretVersionID = property(_SecretHub.SecretVersion_SecretVersionID_get)
+    Secret = property(_SecretHub.SecretVersion_Secret_get)
+    Version = property(_SecretHub.SecretVersion_Version_get)
+    Data = property(_SecretHub.SecretVersion_Data_get)
+    CreatedAt = property(_SecretHub.SecretVersion_CreatedAt_get)
+    Status = property(_SecretHub.SecretVersion_Status_get)
     __swig_destroy__ = _SecretHub.delete_SecretVersion
 
 # Register SecretVersion in _SecretHub:

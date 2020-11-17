@@ -2671,12 +2671,11 @@ SWIGINTERN PyObject *SWIG_PyStaticMethod_New(PyObject *SWIGUNUSEDPARM(self), PyO
 #define SWIGTYPE_p_Client swig_types[0]
 #define SWIGTYPE_p_Secret swig_types[1]
 #define SWIGTYPE_p_SecretVersion swig_types[2]
-#define SWIGTYPE_p_cgoTime swig_types[3]
-#define SWIGTYPE_p_char swig_types[4]
-#define SWIGTYPE_p_p_char swig_types[5]
-#define SWIGTYPE_p_uuid swig_types[6]
-static swig_type_info *swig_types[8];
-static swig_module_info swig_module = {swig_types, 7, 0, 0, 0, 0};
+#define SWIGTYPE_p_char swig_types[3]
+#define SWIGTYPE_p_p_char swig_types[4]
+#define SWIGTYPE_p_uuid swig_types[5]
+static swig_type_info *swig_types[7];
+static swig_module_info swig_module = {swig_types, 6, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2874,157 +2873,6 @@ SWIGINTERNINLINE PyObject*
   SWIG_From_bool  (bool value)
 {
   return PyBool_FromLong(value ? 1 : 0);
-}
-
-
-#include <limits.h>
-#if !defined(SWIG_NO_LLONG_MAX)
-# if !defined(LLONG_MAX) && defined(__GNUC__) && defined (__LONG_LONG_MAX__)
-#   define LLONG_MAX __LONG_LONG_MAX__
-#   define LLONG_MIN (-LLONG_MAX - 1LL)
-#   define ULLONG_MAX (LLONG_MAX * 2ULL + 1ULL)
-# endif
-#endif
-
-
-SWIGINTERN int
-SWIG_AsVal_double (PyObject *obj, double *val)
-{
-  int res = SWIG_TypeError;
-  if (PyFloat_Check(obj)) {
-    if (val) *val = PyFloat_AsDouble(obj);
-    return SWIG_OK;
-#if PY_VERSION_HEX < 0x03000000
-  } else if (PyInt_Check(obj)) {
-    if (val) *val = (double) PyInt_AsLong(obj);
-    return SWIG_OK;
-#endif
-  } else if (PyLong_Check(obj)) {
-    double v = PyLong_AsDouble(obj);
-    if (!PyErr_Occurred()) {
-      if (val) *val = v;
-      return SWIG_OK;
-    } else {
-      PyErr_Clear();
-    }
-  }
-#ifdef SWIG_PYTHON_CAST_MODE
-  {
-    int dispatch = 0;
-    double d = PyFloat_AsDouble(obj);
-    if (!PyErr_Occurred()) {
-      if (val) *val = d;
-      return SWIG_AddCast(SWIG_OK);
-    } else {
-      PyErr_Clear();
-    }
-    if (!dispatch) {
-      long v = PyLong_AsLong(obj);
-      if (!PyErr_Occurred()) {
-	if (val) *val = v;
-	return SWIG_AddCast(SWIG_AddCast(SWIG_OK));
-      } else {
-	PyErr_Clear();
-      }
-    }
-  }
-#endif
-  return res;
-}
-
-
-#include <float.h>
-
-
-#include <math.h>
-
-
-SWIGINTERNINLINE int
-SWIG_CanCastAsInteger(double *d, double min, double max) {
-  double x = *d;
-  if ((min <= x && x <= max)) {
-   double fx = floor(x);
-   double cx = ceil(x);
-   double rd =  ((x - fx) < 0.5) ? fx : cx; /* simple rint */
-   if ((errno == EDOM) || (errno == ERANGE)) {
-     errno = 0;
-   } else {
-     double summ, reps, diff;
-     if (rd < x) {
-       diff = x - rd;
-     } else if (rd > x) {
-       diff = rd - x;
-     } else {
-       return 1;
-     }
-     summ = rd + x;
-     reps = diff/summ;
-     if (reps < 8*DBL_EPSILON) {
-       *d = rd;
-       return 1;
-     }
-   }
-  }
-  return 0;
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_long (PyObject *obj, long* val)
-{
-#if PY_VERSION_HEX < 0x03000000
-  if (PyInt_Check(obj)) {
-    if (val) *val = PyInt_AsLong(obj);
-    return SWIG_OK;
-  } else
-#endif
-  if (PyLong_Check(obj)) {
-    long v = PyLong_AsLong(obj);
-    if (!PyErr_Occurred()) {
-      if (val) *val = v;
-      return SWIG_OK;
-    } else {
-      PyErr_Clear();
-      return SWIG_OverflowError;
-    }
-  }
-#ifdef SWIG_PYTHON_CAST_MODE
-  {
-    int dispatch = 0;
-    long v = PyInt_AsLong(obj);
-    if (!PyErr_Occurred()) {
-      if (val) *val = v;
-      return SWIG_AddCast(SWIG_OK);
-    } else {
-      PyErr_Clear();
-    }
-    if (!dispatch) {
-      double d;
-      int res = SWIG_AddCast(SWIG_AsVal_double (obj,&d));
-      if (SWIG_IsOK(res) && SWIG_CanCastAsInteger(&d, LONG_MIN, LONG_MAX)) {
-	if (val) *val = (long)(d);
-	return res;
-      }
-    }
-  }
-#endif
-  return SWIG_TypeError;
-}
-
-
-SWIGINTERN int
-SWIG_AsVal_int (PyObject * obj, int *val)
-{
-  long v;
-  int res = SWIG_AsVal_long (obj, &v);
-  if (SWIG_IsOK(res)) {
-    if ((v < INT_MIN || v > INT_MAX)) {
-      return SWIG_OverflowError;
-    } else {
-      if (val) *val = (int)(v);
-    }
-  }  
-  return res;
 }
 
 
@@ -3401,41 +3249,6 @@ SWIGINTERN PyObject *Client_swiginit(PyObject *SWIGUNUSEDPARM(self), PyObject *a
   return SWIG_Python_InitShadowInstance(args);
 }
 
-SWIGINTERN PyObject *_wrap_Secret_SecretID_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct Secret *arg1 = (struct Secret *) 0 ;
-  uuid arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Secret_SecretID_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_SecretID_set" "', argument " "1"" of type '" "struct Secret *""'"); 
-  }
-  arg1 = (struct Secret *)(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uuid,  0 );
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Secret_SecretID_set" "', argument " "2"" of type '" "uuid""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Secret_SecretID_set" "', argument " "2"" of type '" "uuid""'");
-    } else {
-      arg2 = *((uuid *)(argp2));
-    }
-  }
-  if (arg1) (arg1)->SecretID = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Secret_SecretID_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
@@ -3453,41 +3266,6 @@ SWIGINTERN PyObject *_wrap_Secret_SecretID_get(PyObject *SWIGUNUSEDPARM(self), P
   arg1 = (struct Secret *)(argp1);
   result =  ((arg1)->SecretID);
   resultobj = SWIG_NewPointerObj((uuid *)memcpy((uuid *)calloc(1,sizeof(uuid)),&result,sizeof(uuid)), SWIGTYPE_p_uuid, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Secret_DirID_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct Secret *arg1 = (struct Secret *) 0 ;
-  uuid arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Secret_DirID_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_DirID_set" "', argument " "1"" of type '" "struct Secret *""'"); 
-  }
-  arg1 = (struct Secret *)(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uuid,  0 );
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Secret_DirID_set" "', argument " "2"" of type '" "uuid""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Secret_DirID_set" "', argument " "2"" of type '" "uuid""'");
-    } else {
-      arg2 = *((uuid *)(argp2));
-    }
-  }
-  if (arg1) (arg1)->DirID = arg2;
-  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -3517,41 +3295,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Secret_RepoID_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct Secret *arg1 = (struct Secret *) 0 ;
-  uuid arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Secret_RepoID_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_RepoID_set" "', argument " "1"" of type '" "struct Secret *""'"); 
-  }
-  arg1 = (struct Secret *)(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uuid,  0 );
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Secret_RepoID_set" "', argument " "2"" of type '" "uuid""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Secret_RepoID_set" "', argument " "2"" of type '" "uuid""'");
-    } else {
-      arg2 = *((uuid *)(argp2));
-    }
-  }
-  if (arg1) (arg1)->RepoID = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Secret_RepoID_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
@@ -3571,44 +3314,6 @@ SWIGINTERN PyObject *_wrap_Secret_RepoID_get(PyObject *SWIGUNUSEDPARM(self), PyO
   resultobj = SWIG_NewPointerObj((uuid *)memcpy((uuid *)calloc(1,sizeof(uuid)),&result,sizeof(uuid)), SWIGTYPE_p_uuid, SWIG_POINTER_OWN |  0 );
   return resultobj;
 fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Secret_Name_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct Secret *arg1 = (struct Secret *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Secret_Name_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_Name_set" "', argument " "1"" of type '" "struct Secret *""'"); 
-  }
-  arg1 = (struct Secret *)(argp1);
-  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Secret_Name_set" "', argument " "2"" of type '" "char *""'");
-  }
-  arg2 = (char *)(buf2);
-  if (arg1->Name) free((char*)arg1->Name);
-  if (arg2) {
-    size_t size = strlen((const char *)(arg2)) + 1;
-    arg1->Name = (char *)(char *)memcpy(malloc((size)*sizeof(char)), (const char *)(arg2), sizeof(char)*(size));
-  } else {
-    arg1->Name = 0;
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -3636,44 +3341,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Secret_BlindName_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct Secret *arg1 = (struct Secret *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Secret_BlindName_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_BlindName_set" "', argument " "1"" of type '" "struct Secret *""'"); 
-  }
-  arg1 = (struct Secret *)(argp1);
-  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Secret_BlindName_set" "', argument " "2"" of type '" "char *""'");
-  }
-  arg2 = (char *)(buf2);
-  if (arg1->BlindName) free((char*)arg1->BlindName);
-  if (arg2) {
-    size_t size = strlen((const char *)(arg2)) + 1;
-    arg1->BlindName = (char *)(char *)memcpy(malloc((size)*sizeof(char)), (const char *)(arg2), sizeof(char)*(size));
-  } else {
-    arg1->BlindName = 0;
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Secret_BlindName_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
@@ -3691,35 +3358,6 @@ SWIGINTERN PyObject *_wrap_Secret_BlindName_get(PyObject *SWIGUNUSEDPARM(self), 
   arg1 = (struct Secret *)(argp1);
   result = (char *) ((arg1)->BlindName);
   resultobj = SWIG_FromCharPtr((const char *)result);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Secret_VersionCount_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct Secret *arg1 = (struct Secret *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Secret_VersionCount_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_VersionCount_set" "', argument " "1"" of type '" "struct Secret *""'"); 
-  }
-  arg1 = (struct Secret *)(argp1);
-  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Secret_VersionCount_set" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = (int)(val2);
-  if (arg1) (arg1)->VersionCount = arg2;
-  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -3749,35 +3387,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Secret_LatestVersion_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct Secret *arg1 = (struct Secret *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Secret_LatestVersion_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_LatestVersion_set" "', argument " "1"" of type '" "struct Secret *""'"); 
-  }
-  arg1 = (struct Secret *)(argp1);
-  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "Secret_LatestVersion_set" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = (int)(val2);
-  if (arg1) (arg1)->LatestVersion = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Secret_LatestVersion_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
@@ -3801,44 +3410,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_Secret_Status_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct Secret *arg1 = (struct Secret *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Secret_Status_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_Status_set" "', argument " "1"" of type '" "struct Secret *""'"); 
-  }
-  arg1 = (struct Secret *)(argp1);
-  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Secret_Status_set" "', argument " "2"" of type '" "char *""'");
-  }
-  arg2 = (char *)(buf2);
-  if (arg1->Status) free((char*)arg1->Status);
-  if (arg2) {
-    size_t size = strlen((const char *)(arg2)) + 1;
-    arg1->Status = (char *)(char *)memcpy(malloc((size)*sizeof(char)), (const char *)(arg2), sizeof(char)*(size));
-  } else {
-    arg1->Status = 0;
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_Secret_Status_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct Secret *arg1 = (struct Secret *) 0 ;
@@ -3856,41 +3427,6 @@ SWIGINTERN PyObject *_wrap_Secret_Status_get(PyObject *SWIGUNUSEDPARM(self), PyO
   arg1 = (struct Secret *)(argp1);
   result = (char *) ((arg1)->Status);
   resultobj = SWIG_FromCharPtr((const char *)result);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_Secret_CreatedAt_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct Secret *arg1 = (struct Secret *) 0 ;
-  cgoTime arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "Secret_CreatedAt_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_Secret, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "Secret_CreatedAt_set" "', argument " "1"" of type '" "struct Secret *""'"); 
-  }
-  arg1 = (struct Secret *)(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_cgoTime,  0 );
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "Secret_CreatedAt_set" "', argument " "2"" of type '" "cgoTime""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "Secret_CreatedAt_set" "', argument " "2"" of type '" "cgoTime""'");
-    } else {
-      arg2 = *((cgoTime *)(argp2));
-    }
-  }
-  if (arg1) (arg1)->CreatedAt = arg2;
-  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -3955,41 +3491,6 @@ SWIGINTERN PyObject *Secret_swigregister(PyObject *SWIGUNUSEDPARM(self), PyObjec
   return SWIG_Py_Void();
 }
 
-SWIGINTERN PyObject *_wrap_SecretVersion_SecretVersionID_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
-  uuid arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "SecretVersion_SecretVersionID_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_SecretVersion, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_SecretVersionID_set" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
-  }
-  arg1 = (struct SecretVersion *)(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_uuid,  0 );
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SecretVersion_SecretVersionID_set" "', argument " "2"" of type '" "uuid""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "SecretVersion_SecretVersionID_set" "', argument " "2"" of type '" "uuid""'");
-    } else {
-      arg2 = *((uuid *)(argp2));
-    }
-  }
-  if (arg1) (arg1)->SecretVersionID = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_SecretVersion_SecretVersionID_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
@@ -4007,35 +3508,6 @@ SWIGINTERN PyObject *_wrap_SecretVersion_SecretVersionID_get(PyObject *SWIGUNUSE
   arg1 = (struct SecretVersion *)(argp1);
   result =  ((arg1)->SecretVersionID);
   resultobj = SWIG_NewPointerObj((uuid *)memcpy((uuid *)calloc(1,sizeof(uuid)),&result,sizeof(uuid)), SWIGTYPE_p_uuid, SWIG_POINTER_OWN |  0 );
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_SecretVersion_Secret_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
-  struct Secret *arg2 = (struct Secret *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 = 0 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "SecretVersion_Secret_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_SecretVersion, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_Secret_set" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
-  }
-  arg1 = (struct SecretVersion *)(argp1);
-  res2 = SWIG_ConvertPtr(swig_obj[1], &argp2,SWIGTYPE_p_Secret, 0 |  0 );
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SecretVersion_Secret_set" "', argument " "2"" of type '" "struct Secret *""'"); 
-  }
-  arg2 = (struct Secret *)(argp2);
-  if (arg1) (arg1)->Secret = *arg2;
-  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -4065,35 +3537,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_SecretVersion_Version_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
-  int arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int val2 ;
-  int ecode2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "SecretVersion_Version_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_SecretVersion, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_Version_set" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
-  }
-  arg1 = (struct SecretVersion *)(argp1);
-  ecode2 = SWIG_AsVal_int(swig_obj[1], &val2);
-  if (!SWIG_IsOK(ecode2)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode2), "in method '" "SecretVersion_Version_set" "', argument " "2"" of type '" "int""'");
-  } 
-  arg2 = (int)(val2);
-  if (arg1) (arg1)->Version = arg2;
-  resultobj = SWIG_Py_Void();
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_SecretVersion_Version_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
@@ -4117,44 +3560,6 @@ fail:
 }
 
 
-SWIGINTERN PyObject *_wrap_SecretVersion_Data_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "SecretVersion_Data_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_SecretVersion, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_Data_set" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
-  }
-  arg1 = (struct SecretVersion *)(argp1);
-  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SecretVersion_Data_set" "', argument " "2"" of type '" "char *""'");
-  }
-  arg2 = (char *)(buf2);
-  if (arg1->Data) free((char*)arg1->Data);
-  if (arg2) {
-    size_t size = strlen((const char *)(arg2)) + 1;
-    arg1->Data = (char *)(char *)memcpy(malloc((size)*sizeof(char)), (const char *)(arg2), sizeof(char)*(size));
-  } else {
-    arg1->Data = 0;
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return NULL;
-}
-
-
 SWIGINTERN PyObject *_wrap_SecretVersion_Data_get(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
   PyObject *resultobj = 0;
   struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
@@ -4172,41 +3577,6 @@ SWIGINTERN PyObject *_wrap_SecretVersion_Data_get(PyObject *SWIGUNUSEDPARM(self)
   arg1 = (struct SecretVersion *)(argp1);
   result = (char *) ((arg1)->Data);
   resultobj = SWIG_FromCharPtr((const char *)result);
-  return resultobj;
-fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_SecretVersion_CreatedAt_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
-  cgoTime arg2 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  void *argp2 ;
-  int res2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "SecretVersion_CreatedAt_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_SecretVersion, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_CreatedAt_set" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
-  }
-  arg1 = (struct SecretVersion *)(argp1);
-  {
-    res2 = SWIG_ConvertPtr(swig_obj[1], &argp2, SWIGTYPE_p_cgoTime,  0 );
-    if (!SWIG_IsOK(res2)) {
-      SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SecretVersion_CreatedAt_set" "', argument " "2"" of type '" "cgoTime""'"); 
-    }  
-    if (!argp2) {
-      SWIG_exception_fail(SWIG_ValueError, "invalid null reference " "in method '" "SecretVersion_CreatedAt_set" "', argument " "2"" of type '" "cgoTime""'");
-    } else {
-      arg2 = *((cgoTime *)(argp2));
-    }
-  }
-  if (arg1) (arg1)->CreatedAt = arg2;
-  resultobj = SWIG_Py_Void();
   return resultobj;
 fail:
   return NULL;
@@ -4238,44 +3608,6 @@ SWIGINTERN PyObject *_wrap_SecretVersion_CreatedAt_get(PyObject *SWIGUNUSEDPARM(
   }
   return resultobj;
 fail:
-  return NULL;
-}
-
-
-SWIGINTERN PyObject *_wrap_SecretVersion_Status_set(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
-  PyObject *resultobj = 0;
-  struct SecretVersion *arg1 = (struct SecretVersion *) 0 ;
-  char *arg2 = (char *) 0 ;
-  void *argp1 = 0 ;
-  int res1 = 0 ;
-  int res2 ;
-  char *buf2 = 0 ;
-  int alloc2 = 0 ;
-  PyObject *swig_obj[2] ;
-  
-  if (!SWIG_Python_UnpackTuple(args, "SecretVersion_Status_set", 2, 2, swig_obj)) SWIG_fail;
-  res1 = SWIG_ConvertPtr(swig_obj[0], &argp1,SWIGTYPE_p_SecretVersion, 0 |  0 );
-  if (!SWIG_IsOK(res1)) {
-    SWIG_exception_fail(SWIG_ArgError(res1), "in method '" "SecretVersion_Status_set" "', argument " "1"" of type '" "struct SecretVersion *""'"); 
-  }
-  arg1 = (struct SecretVersion *)(argp1);
-  res2 = SWIG_AsCharPtrAndSize(swig_obj[1], &buf2, NULL, &alloc2);
-  if (!SWIG_IsOK(res2)) {
-    SWIG_exception_fail(SWIG_ArgError(res2), "in method '" "SecretVersion_Status_set" "', argument " "2"" of type '" "char *""'");
-  }
-  arg2 = (char *)(buf2);
-  if (arg1->Status) free((char*)arg1->Status);
-  if (arg2) {
-    size_t size = strlen((const char *)(arg2)) + 1;
-    arg1->Status = (char *)(char *)memcpy(malloc((size)*sizeof(char)), (const char *)(arg2), sizeof(char)*(size));
-  } else {
-    arg1->Status = 0;
-  }
-  resultobj = SWIG_Py_Void();
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
-  return resultobj;
-fail:
-  if (alloc2 == SWIG_NEWOBJ) free((char*)buf2);
   return NULL;
 }
 
@@ -4345,37 +3677,22 @@ static PyMethodDef SwigMethods[] = {
 	 { "Client_Write", _wrap_Client_Write, METH_VARARGS, NULL},
 	 { "Client_swigregister", Client_swigregister, METH_O, NULL},
 	 { "Client_swiginit", Client_swiginit, METH_VARARGS, NULL},
-	 { "Secret_SecretID_set", _wrap_Secret_SecretID_set, METH_VARARGS, NULL},
 	 { "Secret_SecretID_get", _wrap_Secret_SecretID_get, METH_O, NULL},
-	 { "Secret_DirID_set", _wrap_Secret_DirID_set, METH_VARARGS, NULL},
 	 { "Secret_DirID_get", _wrap_Secret_DirID_get, METH_O, NULL},
-	 { "Secret_RepoID_set", _wrap_Secret_RepoID_set, METH_VARARGS, NULL},
 	 { "Secret_RepoID_get", _wrap_Secret_RepoID_get, METH_O, NULL},
-	 { "Secret_Name_set", _wrap_Secret_Name_set, METH_VARARGS, NULL},
 	 { "Secret_Name_get", _wrap_Secret_Name_get, METH_O, NULL},
-	 { "Secret_BlindName_set", _wrap_Secret_BlindName_set, METH_VARARGS, NULL},
 	 { "Secret_BlindName_get", _wrap_Secret_BlindName_get, METH_O, NULL},
-	 { "Secret_VersionCount_set", _wrap_Secret_VersionCount_set, METH_VARARGS, NULL},
 	 { "Secret_VersionCount_get", _wrap_Secret_VersionCount_get, METH_O, NULL},
-	 { "Secret_LatestVersion_set", _wrap_Secret_LatestVersion_set, METH_VARARGS, NULL},
 	 { "Secret_LatestVersion_get", _wrap_Secret_LatestVersion_get, METH_O, NULL},
-	 { "Secret_Status_set", _wrap_Secret_Status_set, METH_VARARGS, NULL},
 	 { "Secret_Status_get", _wrap_Secret_Status_get, METH_O, NULL},
-	 { "Secret_CreatedAt_set", _wrap_Secret_CreatedAt_set, METH_VARARGS, NULL},
 	 { "Secret_CreatedAt_get", _wrap_Secret_CreatedAt_get, METH_O, NULL},
 	 { "delete_Secret", _wrap_delete_Secret, METH_O, NULL},
 	 { "Secret_swigregister", Secret_swigregister, METH_O, NULL},
-	 { "SecretVersion_SecretVersionID_set", _wrap_SecretVersion_SecretVersionID_set, METH_VARARGS, NULL},
 	 { "SecretVersion_SecretVersionID_get", _wrap_SecretVersion_SecretVersionID_get, METH_O, NULL},
-	 { "SecretVersion_Secret_set", _wrap_SecretVersion_Secret_set, METH_VARARGS, NULL},
 	 { "SecretVersion_Secret_get", _wrap_SecretVersion_Secret_get, METH_O, NULL},
-	 { "SecretVersion_Version_set", _wrap_SecretVersion_Version_set, METH_VARARGS, NULL},
 	 { "SecretVersion_Version_get", _wrap_SecretVersion_Version_get, METH_O, NULL},
-	 { "SecretVersion_Data_set", _wrap_SecretVersion_Data_set, METH_VARARGS, NULL},
 	 { "SecretVersion_Data_get", _wrap_SecretVersion_Data_get, METH_O, NULL},
-	 { "SecretVersion_CreatedAt_set", _wrap_SecretVersion_CreatedAt_set, METH_VARARGS, NULL},
 	 { "SecretVersion_CreatedAt_get", _wrap_SecretVersion_CreatedAt_get, METH_O, NULL},
-	 { "SecretVersion_Status_set", _wrap_SecretVersion_Status_set, METH_VARARGS, NULL},
 	 { "SecretVersion_Status_get", _wrap_SecretVersion_Status_get, METH_O, NULL},
 	 { "delete_SecretVersion", _wrap_delete_SecretVersion, METH_O, NULL},
 	 { "SecretVersion_swigregister", SecretVersion_swigregister, METH_O, NULL},
@@ -4392,7 +3709,6 @@ static PyMethodDef SwigMethods_proxydocs[] = {
 static swig_type_info _swigt__p_Client = {"_p_Client", "struct Client *|Client *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_Secret = {"_p_Secret", "struct Secret *|Secret *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_SecretVersion = {"_p_SecretVersion", "struct SecretVersion *|SecretVersion *", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_cgoTime = {"_p_cgoTime", "cgoTime *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_uuid = {"_p_uuid", "uuid *", 0, 0, (void*)0, 0};
@@ -4401,7 +3717,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Client,
   &_swigt__p_Secret,
   &_swigt__p_SecretVersion,
-  &_swigt__p_cgoTime,
   &_swigt__p_char,
   &_swigt__p_p_char,
   &_swigt__p_uuid,
@@ -4410,7 +3725,6 @@ static swig_type_info *swig_type_initial[] = {
 static swig_cast_info _swigc__p_Client[] = {  {&_swigt__p_Client, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_Secret[] = {  {&_swigt__p_Secret, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_SecretVersion[] = {  {&_swigt__p_SecretVersion, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_cgoTime[] = {  {&_swigt__p_cgoTime, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_char[] = {  {&_swigt__p_p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_uuid[] = {  {&_swigt__p_uuid, 0, 0, 0},{0, 0, 0, 0}};
@@ -4419,7 +3733,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Client,
   _swigc__p_Secret,
   _swigc__p_SecretVersion,
-  _swigc__p_cgoTime,
   _swigc__p_char,
   _swigc__p_p_char,
   _swigc__p_uuid,
