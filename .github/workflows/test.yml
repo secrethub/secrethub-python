@@ -7,4 +7,4 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - run: cd "C:\hostedtoolcache\windows\Python\3.7.9\include" && dir
+      - run: docker run winamd64/python:3.9 -- cd "C:\Python" && tree
