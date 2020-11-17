@@ -7,10 +7,10 @@ PyObject *py_uuid = NULL;
 
 %init %{
     py_uuid = PyImport_ImportModule("uuid");
+    PyDateTime_IMPORT;
 %}
 
 %typemap (out) cgoTime CreatedAt {
-    PyDateTime_IMPORT;
     double doubleValue = (int)$1;
     PyObject *floatObj = PyFloat_FromDouble(doubleValue);
     PyObject *timeTuple = Py_BuildValue("(O)", floatObj);

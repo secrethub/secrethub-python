@@ -3465,7 +3465,6 @@ SWIGINTERN PyObject *_wrap_Secret_CreatedAt_get(PyObject *SWIGUNUSEDPARM(self), 
   arg1 = (struct Secret *)(argp1);
   result =  ((arg1)->CreatedAt);
   {
-    PyDateTime_IMPORT;
     double doubleValue = (int)result;
     PyObject *floatObj = PyFloat_FromDouble(doubleValue);
     PyObject *timeTuple = Py_BuildValue("(O)", floatObj);
@@ -3620,7 +3619,6 @@ SWIGINTERN PyObject *_wrap_SecretVersion_CreatedAt_get(PyObject *SWIGUNUSEDPARM(
   arg1 = (struct SecretVersion *)(argp1);
   result =  ((arg1)->CreatedAt);
   {
-    PyDateTime_IMPORT;
     double doubleValue = (int)result;
     PyObject *floatObj = PyFloat_FromDouble(doubleValue);
     PyObject *timeTuple = Py_BuildValue("(O)", floatObj);
@@ -4489,6 +4487,7 @@ SWIG_init(void) {
   
   
   py_uuid = PyImport_ImportModule("uuid");
+  PyDateTime_IMPORT;
   
 #if PY_VERSION_HEX >= 0x03000000
   return m;
