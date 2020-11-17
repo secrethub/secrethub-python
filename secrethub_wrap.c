@@ -2707,6 +2707,7 @@ static swig_module_info swig_module = {swig_types, 5, 0, 0, 0, 0};
 
 #include "datetime.h"
 PyObject *py_uuid = NULL;
+PyObject *py_json = NULL;
 
 
 #include "Client.h"
@@ -3084,7 +3085,12 @@ SWIGINTERN PyObject *_wrap_Client_ResolveEnv(PyObject *SWIGUNUSEDPARM(self), PyO
   }
   arg1 = (struct Client *)(argp1);
   result = (char *)Client_ResolveEnv(arg1,arg2);
-  resultobj = SWIG_FromCharPtr((const char *)result);
+  {
+    PyObject *json_loads = PyObject_GetAttrString(py_json, "loads");
+    PyObject *str = PyUnicode_DecodeUTF8(result, strlen(result), NULL);
+    resultobj = PyObject_CallFunctionObjArgs(json_loads, str, NULL);
+    Py_DECREF(str);
+  }
   {
     char *errMsg = *arg2;
     if(strlen(errMsg) != 0) {
@@ -4487,6 +4493,7 @@ SWIG_init(void) {
   
   
   py_uuid = PyImport_ImportModule("uuid");
+  py_json = PyImport_ImportModule("json");
   PyDateTime_IMPORT;
   
 #if PY_VERSION_HEX >= 0x03000000
