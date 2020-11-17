@@ -2707,6 +2707,9 @@ static swig_module_info swig_module = {swig_types, 7, 0, 0, 0, 0};
 #define SWIG_as_voidptrptr(a) ((void)SWIG_as_voidptr(*a),(void**)(a)) 
 
 
+#include "datetime.h"
+
+
 #include "Client.h"
 
 
@@ -3910,7 +3913,13 @@ SWIGINTERN PyObject *_wrap_Secret_CreatedAt_get(PyObject *SWIGUNUSEDPARM(self), 
   }
   arg1 = (struct Secret *)(argp1);
   result =  ((arg1)->CreatedAt);
-  resultobj = SWIG_NewPointerObj((cgoTime *)memcpy((cgoTime *)calloc(1,sizeof(cgoTime)),&result,sizeof(cgoTime)), SWIGTYPE_p_cgoTime, SWIG_POINTER_OWN |  0 );
+  {
+    PyDateTime_IMPORT;
+    double doubleValue = (int)result;
+    PyObject *floatObj = PyFloat_FromDouble(doubleValue);
+    PyObject *timeTuple = Py_BuildValue("(O)", floatObj);
+    resultobj = PyDateTime_FromTimestamp(timeTuple);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -4220,7 +4229,13 @@ SWIGINTERN PyObject *_wrap_SecretVersion_CreatedAt_get(PyObject *SWIGUNUSEDPARM(
   }
   arg1 = (struct SecretVersion *)(argp1);
   result =  ((arg1)->CreatedAt);
-  resultobj = SWIG_NewPointerObj((cgoTime *)memcpy((cgoTime *)calloc(1,sizeof(cgoTime)),&result,sizeof(cgoTime)), SWIGTYPE_p_cgoTime, SWIG_POINTER_OWN |  0 );
+  {
+    PyDateTime_IMPORT;
+    double doubleValue = (int)result;
+    PyObject *floatObj = PyFloat_FromDouble(doubleValue);
+    PyObject *timeTuple = Py_BuildValue("(O)", floatObj);
+    resultobj = PyDateTime_FromTimestamp(timeTuple);
+  }
   return resultobj;
 fail:
   return NULL;
