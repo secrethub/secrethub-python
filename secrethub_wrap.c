@@ -2673,9 +2673,8 @@ SWIGINTERN PyObject *SWIG_PyStaticMethod_New(PyObject *SWIGUNUSEDPARM(self), PyO
 #define SWIGTYPE_p_SecretVersion swig_types[2]
 #define SWIGTYPE_p_char swig_types[3]
 #define SWIGTYPE_p_p_char swig_types[4]
-#define SWIGTYPE_p_uuid swig_types[5]
-static swig_type_info *swig_types[7];
-static swig_module_info swig_module = {swig_types, 6, 0, 0, 0, 0};
+static swig_type_info *swig_types[6];
+static swig_module_info swig_module = {swig_types, 5, 0, 0, 0, 0};
 #define SWIG_TypeQuery(name) SWIG_TypeQueryModule(&swig_module, &swig_module, name)
 #define SWIG_MangledTypeQuery(name) SWIG_MangledTypeQueryModule(&swig_module, &swig_module, name)
 
@@ -2707,6 +2706,7 @@ static swig_module_info swig_module = {swig_types, 6, 0, 0, 0, 0};
 
 
 #include "datetime.h"
+PyObject *py_uuid = NULL;
 
 
 #include "Client.h"
@@ -3265,7 +3265,12 @@ SWIGINTERN PyObject *_wrap_Secret_SecretID_get(PyObject *SWIGUNUSEDPARM(self), P
   }
   arg1 = (struct Secret *)(argp1);
   result =  ((arg1)->SecretID);
-  resultobj = SWIG_NewPointerObj((uuid *)memcpy((uuid *)calloc(1,sizeof(uuid)),&result,sizeof(uuid)), SWIGTYPE_p_uuid, SWIG_POINTER_OWN |  0 );
+  {
+    PyObject *uuid_ctor = PyObject_GetAttrString(py_uuid, "UUID");
+    PyObject *str = PyUnicode_DecodeUTF8(result, strlen(result), NULL);
+    resultobj = PyObject_CallFunctionObjArgs(uuid_ctor, str, NULL);
+    Py_DECREF(str);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -3288,7 +3293,12 @@ SWIGINTERN PyObject *_wrap_Secret_DirID_get(PyObject *SWIGUNUSEDPARM(self), PyOb
   }
   arg1 = (struct Secret *)(argp1);
   result =  ((arg1)->DirID);
-  resultobj = SWIG_NewPointerObj((uuid *)memcpy((uuid *)calloc(1,sizeof(uuid)),&result,sizeof(uuid)), SWIGTYPE_p_uuid, SWIG_POINTER_OWN |  0 );
+  {
+    PyObject *uuid_ctor = PyObject_GetAttrString(py_uuid, "UUID");
+    PyObject *str = PyUnicode_DecodeUTF8(result, strlen(result), NULL);
+    resultobj = PyObject_CallFunctionObjArgs(uuid_ctor, str, NULL);
+    Py_DECREF(str);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -3311,7 +3321,12 @@ SWIGINTERN PyObject *_wrap_Secret_RepoID_get(PyObject *SWIGUNUSEDPARM(self), PyO
   }
   arg1 = (struct Secret *)(argp1);
   result =  ((arg1)->RepoID);
-  resultobj = SWIG_NewPointerObj((uuid *)memcpy((uuid *)calloc(1,sizeof(uuid)),&result,sizeof(uuid)), SWIGTYPE_p_uuid, SWIG_POINTER_OWN |  0 );
+  {
+    PyObject *uuid_ctor = PyObject_GetAttrString(py_uuid, "UUID");
+    PyObject *str = PyUnicode_DecodeUTF8(result, strlen(result), NULL);
+    resultobj = PyObject_CallFunctionObjArgs(uuid_ctor, str, NULL);
+    Py_DECREF(str);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -3507,7 +3522,12 @@ SWIGINTERN PyObject *_wrap_SecretVersion_SecretVersionID_get(PyObject *SWIGUNUSE
   }
   arg1 = (struct SecretVersion *)(argp1);
   result =  ((arg1)->SecretVersionID);
-  resultobj = SWIG_NewPointerObj((uuid *)memcpy((uuid *)calloc(1,sizeof(uuid)),&result,sizeof(uuid)), SWIGTYPE_p_uuid, SWIG_POINTER_OWN |  0 );
+  {
+    PyObject *uuid_ctor = PyObject_GetAttrString(py_uuid, "UUID");
+    PyObject *str = PyUnicode_DecodeUTF8(result, strlen(result), NULL);
+    resultobj = PyObject_CallFunctionObjArgs(uuid_ctor, str, NULL);
+    Py_DECREF(str);
+  }
   return resultobj;
 fail:
   return NULL;
@@ -3711,7 +3731,6 @@ static swig_type_info _swigt__p_Secret = {"_p_Secret", "struct Secret *|Secret *
 static swig_type_info _swigt__p_SecretVersion = {"_p_SecretVersion", "struct SecretVersion *|SecretVersion *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_char = {"_p_char", "char *", 0, 0, (void*)0, 0};
 static swig_type_info _swigt__p_p_char = {"_p_p_char", "char **", 0, 0, (void*)0, 0};
-static swig_type_info _swigt__p_uuid = {"_p_uuid", "uuid *", 0, 0, (void*)0, 0};
 
 static swig_type_info *swig_type_initial[] = {
   &_swigt__p_Client,
@@ -3719,7 +3738,6 @@ static swig_type_info *swig_type_initial[] = {
   &_swigt__p_SecretVersion,
   &_swigt__p_char,
   &_swigt__p_p_char,
-  &_swigt__p_uuid,
 };
 
 static swig_cast_info _swigc__p_Client[] = {  {&_swigt__p_Client, 0, 0, 0},{0, 0, 0, 0}};
@@ -3727,7 +3745,6 @@ static swig_cast_info _swigc__p_Secret[] = {  {&_swigt__p_Secret, 0, 0, 0},{0, 0
 static swig_cast_info _swigc__p_SecretVersion[] = {  {&_swigt__p_SecretVersion, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_char[] = {  {&_swigt__p_char, 0, 0, 0},{0, 0, 0, 0}};
 static swig_cast_info _swigc__p_p_char[] = {  {&_swigt__p_p_char, 0, 0, 0},{0, 0, 0, 0}};
-static swig_cast_info _swigc__p_uuid[] = {  {&_swigt__p_uuid, 0, 0, 0},{0, 0, 0, 0}};
 
 static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_Client,
@@ -3735,7 +3752,6 @@ static swig_cast_info *swig_cast_initial[] = {
   _swigc__p_SecretVersion,
   _swigc__p_char,
   _swigc__p_p_char,
-  _swigc__p_uuid,
 };
 
 
@@ -4470,6 +4486,9 @@ SWIG_init(void) {
 #endif
   
   SWIG_InstallConstants(d,swig_const_table);
+  
+  
+  py_uuid = PyImport_ImportModule("uuid");
   
 #if PY_VERSION_HEX >= 0x03000000
   return m;
