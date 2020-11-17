@@ -1,0 +1,10 @@
+name: test
+on: [push]
+jobs:
+  test:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: where /r c:\ Python.h
