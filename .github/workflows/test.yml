@@ -7,4 +7,15 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - run: docker run winamd64/python:3.9 -- cd "C:\Python" && tree
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - uses: ilammy/msvc-dev-cmd@v1
+      - run: make client-win
+      - run: dir
+      - run: make complie-win
+      - run: dir
+      - uses: actions/upload-artifact@v2
+        with:
+          name: secrethub-python-win
+          path: .
