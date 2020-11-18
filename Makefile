@@ -22,7 +22,7 @@ client-win: $(XGO_DIR)/secrethub_wrapper.go
 .PHONY: compile-win
 compile-win: $(DEPS)
 	@echo "Compiling..."
-	@cl.exe /c /O2 secrethub_wrap.c secrethub_wrap.obj
+	@cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include /Fo secrethub_wrap.obj
 	@cl.exe /LD -fPIC secrethub_wrap.obj Client.a /OUT:_secrethub.dll
 
 .PHONY: client
