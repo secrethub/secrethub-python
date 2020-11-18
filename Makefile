@@ -17,7 +17,7 @@ lib-win: client-win swig compile-win
 .PHONY: client-win
 client-win: $(XGO_DIR)/secrethub_wrapper.go
 	@echo "Making the C library from Go files (Windows)..."
-	@cd $(XGO_DIR) && GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc go build -o ../Client.a -buildmode=c-archive secrethub_wrapper.go
+	@cd $(XGO_DIR) && GOOS=windows GOARCH=amd64 CGO_ENABLED=1 go build -o ../Client.a -buildmode=c-archive secrethub_wrapper.go
 
 .PHONY: compile-win
 compile-win: $(DEPS)
