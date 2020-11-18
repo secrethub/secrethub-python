@@ -11,9 +11,7 @@ jobs:
         with:
           python-version: '3.8'
       - uses: ilammy/msvc-dev-cmd@v1
-      - run: make client-win
-      - run: dir
-      - run: make compile-win
+      - run: make lib-win
       - run: dir
       - uses: actions/upload-artifact@v2
         with:
