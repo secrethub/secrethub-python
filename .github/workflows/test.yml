@@ -13,7 +13,7 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
       - run: make client-win
       - run: dir
-      - run: make complie-win
+      - run: make compile-win
       - run: dir
       - uses: actions/upload-artifact@v2
         with:
