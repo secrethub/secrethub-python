@@ -39,7 +39,7 @@ compile: $(DEPS)
 .PHONY: swig
 swig:
 	@echo "Generating swig files..."
-	@swig -python secrethub.i
+	@swig.exe -python secrethub.i
 
 .PHONY: clean
 clean:
