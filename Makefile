@@ -24,8 +24,8 @@ compile-win: $(DEPS)
 	@echo "Compiling..."
 	#@cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include /Fo secrethub_wrap.obj
 	x86_64-w64-mingw32-gcc -c -O2 -fpic -o secrethub_wrap.obj -I C:\hostedtoolcache\windows\Python\3.8.6\x64\include secrethub_wrap.c
-	rename Client.a Client.lib
-	link.exe /DLL /OUT:_secrethub.dll secrethub_wrap.obj Client.lib  
+	ren Client.a Client.lib
+	link.exe /DLL /OUT:_secrethub.dll secrethub_wrap.obj Client.lib 
 	#cl.exe /LD secrethub_wrap.obj Client.lib /OUT:_secrethub.dll
 	#x86_64-w64-mingw32-gcc -shared -fPIC secrethub_wrap.obj Client.a -o _secrethub.dll
 
