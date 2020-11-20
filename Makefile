@@ -24,8 +24,8 @@ compile-win: $(DEPS)
 	@echo "Compiling..."
 	#@cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include /Fo secrethub_wrap.obj
 	x86_64-w64-mingw32-gcc -c -O2 -fpic -o secrethub_wrap.obj -I C:\hostedtoolcache\windows\Python\3.8.6\x64\include secrethub_wrap.c
-	#@cl.exe /LD -fPIC secrethub_wrap.obj Client.a /OUT:_secrethub.dll
-	x86_64-w64-mingw32-gcc -shared -fPIC secrethub_wrap.obj Client.a -o _secrethub.dll
+	cl.exe /LD -fPIC secrethub_wrap.obj Client.a /OUT:_secrethub.dll
+	#x86_64-w64-mingw32-gcc -shared -fPIC secrethub_wrap.obj Client.a -o _secrethub.dll
 
 .PHONY: client
 client: $(XGO_DIR)/secrethub_wrapper.go
