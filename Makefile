@@ -27,7 +27,7 @@ compile-win: $(DEPS)
 	# mv Client.a Client.lib
 	#link.exe /DLL /OUT:_secrethub.dll secrethub_wrap.obj Client.lib 
 	#cl.exe /LD secrethub_wrap.obj Client.lib /OUT:_secrethub.dll
-	x86_64-w64-mingw32-gcc -shared -fPIC -L C:\hostedtoolcache\windows\Python\3.8.6\x64\include -lpython38 secrethub_wrap.obj Client.a -o _secrethub.dll
+	x86_64-w64-mingw32-gcc -shared -fPIC -L C:\hostedtoolcache\windows\Python\3.8.6\x64\Lib -lpython3 secrethub_wrap.obj Client.a -o _secrethub.dll
 
 .PHONY: client
 client: $(XGO_DIR)/secrethub_wrapper.go
