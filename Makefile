@@ -22,9 +22,9 @@ client-win: $(XGO_DIR)/secrethub_wrapper.go
 .PHONY: compile-win
 compile-win: $(DEPS)
 	@echo "Compiling..."
-	@cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include /Fo secrethub_wrap.obj
-	@mingw-w64-ld -shared -fPIC secrethub_wrap.obj Client.a -o _secrethub.dll
-	#@cl.exe /LD -fPIC secrethub_wrap.obj Client.a /OUT:_secrethub.dll
+	@cl.exe /D "__SIZE_TYPE__=long unsigned int" /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include /Fo secrethub_wrap.obj
+	#@mingw-w64-ld -shared -fPIC secrethub_wrap.obj Client.a -o _secrethub.dll
+	@cl.exe /LD -fPIC secrethub_wrap.obj Client.a /OUT:_secrethub.dll
 
 .PHONY: client
 client: $(XGO_DIR)/secrethub_wrapper.go
