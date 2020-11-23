@@ -29,7 +29,7 @@ compile-win: $(DEPS)
 	#cl.exe /LD secrethub_wrap.obj Client.lib /OUT:_secrethub.dll
 	nm C:\hostedtoolcache\windows\PyPy\3.6.9\x86\libs\python36.lib | grep " T _" | sed "s/.* T _//" >> python36.def
 	dlltool --input-def python36.def --dllname python32 --output-lib libpython36.a
-	x86_64-w64-mingw32-gcc -shared -fPIC -LC:\hostedtoolcache\windows\PyPy\3.6.9\x86\libs -L. -lpython36 secrethub_wrap.obj Client.a -o _secrethub.dll
+	x86_64-w64-mingw32-gcc -shared -fPIC libpython36.a secrethub_wrap.obj Client.a -o _secrethub.dll
 
 .PHONY: client
 client: $(XGO_DIR)/secrethub_wrapper.go
