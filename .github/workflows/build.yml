@@ -1,4 +1,4 @@
-name: build-win32
+name: build
 on: [push]
 jobs:
   build-win32-dll:
@@ -11,12 +11,8 @@ jobs:
       - run: cd secrethub-xgo && GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
       - uses: actions/upload-artifact@v2 
         with: 
-          name: Client.dll
+          name: client-dll-win32
           path: ./Client.dll
-      - uses: actions/upload-artifact@v2 
-        with: 
-          name: Client.h
-          path: ./Client.h
   build-win32-client:
     needs: [build-win32-dll]
     runs-on: windows-2019
@@ -33,7 +29,7 @@ jobs:
       - run: lib /def:Client.def /out:Client.lib /machine:x86
       - uses: actions/download-artifact@v2 
         with: 
-          name: Client.dll
+          name: client-dll-win32
           path: ./build/
       - run: cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include
       - run: dir
