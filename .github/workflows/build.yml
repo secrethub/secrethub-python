@@ -32,9 +32,7 @@ jobs:
           name: client-dll-win32
           path: ./build/
       - run: cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include
-      - run: dir
       - run: cl.exe /LD secrethub_wrap.obj Client.lib /link /LIBPATH:C:\hostedtoolcache\windows\Python\3.8.6\x86\libs
-      - run: dir
       - uses: actions/upload-artifact@v2
         with:
           name: secrethub-python-win32
