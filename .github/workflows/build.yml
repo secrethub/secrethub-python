@@ -37,7 +37,9 @@ jobs:
       - uses: actions/upload-artifact@v2
         with:
           name: secrethub-python-win32
-          path: .
+          path: |
+            _secrethub.pyd
+            Client.dll
   build-win64-dll:
     runs-on: ubuntu-20.04
     steps:
@@ -73,5 +75,7 @@ jobs:
       - run: Rename-Item -Path "secrethub_wrap.dll" -NewName "_secrethub.pyd"
       - uses: actions/upload-artifact@v2
         with:
-          name: secrethub-python-win32
-          path: .
+          name: secrethub-python-win64
+          path: |
+            _secrethub.pyd
+            Client.dll
