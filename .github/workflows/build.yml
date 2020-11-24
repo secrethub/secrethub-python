@@ -39,3 +39,39 @@ jobs:
         with:
           name: secrethub-python-win32
           path: .
+  build-win64-dll:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: sudo apt install -y gcc-mingw-w64
+      - run: cd secrethub-xgo && GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
+      - uses: actions/upload-artifact@v2
+        with:
+          name: client-dll-win64
+          path: ./Client.dll
+  build-win64-client:
+    needs: [build-win64-dll]
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+      - run: lib /def:Client.def /out:Client.lib /machine:x64
+      - uses: actions/download-artifact@v2
+        with:
+          name: client-dll-win64
+          path: ./build/
+      - run: cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include
+      - run: cl.exe /LD secrethub_wrap.obj Client.lib /link /LIBPATH:C:\hostedtoolcache\windows\Python\3.8.6\x64\libs
+      - uses: actions/upload-artifact@v2
+        with:
+          name: secrethub-python-win32
+          path: .
