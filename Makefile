@@ -20,7 +20,7 @@ client-win: $(XGO_DIR)/secrethub_wrapper.go
 	cd $(XGO_DIR) && GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
 
 .PHONY: compile-win
-compile-win: $(DEPS)
+compile-win:
 	@echo "Compiling..."
 	cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include /Fo secrethub_wrap.obj
 	# mv Client.a Client.lib

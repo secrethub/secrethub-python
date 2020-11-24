@@ -35,7 +35,8 @@ jobs:
         with: 
           name: Client.dll
           path: ./build/
-      - run: make compile-win
+      - run: cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include /Fo secrethub_wrap.obj
+      - run: cl.exe /LD secrethub_wrap.obj Client.lib /OUT:_secrethub.dll
       - run: dir
       - uses: actions/upload-artifact@v2
         with:
