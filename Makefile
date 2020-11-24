@@ -17,19 +17,18 @@ lib-win: client-win swig compile-win
 .PHONY: client-win
 client-win: $(XGO_DIR)/secrethub_wrapper.go
 	@echo "Making the C library from Go files (Windows)..."
-	@cd $(XGO_DIR) && GOOS=windows GOARCH=amd64 CGO_ENABLED=1 go build -o ../Client.a -buildmode=c-archive secrethub_wrapper.go
+	cd $(XGO_DIR) && GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
 
 .PHONY: compile-win
 compile-win: $(DEPS)
 	@echo "Compiling..."
-	#@cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include /Fo secrethub_wrap.obj
-	x86_64-w64-mingw32-gcc -c -O2 -fpic -o secrethub_wrap.obj -I C:\hostedtoolcache\windows\Python\3.8.6\x64\include secrethub_wrap.c
+	cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include /Fo secrethub_wrap.obj
 	# mv Client.a Client.lib
 	#link.exe /DLL /OUT:_secrethub.dll secrethub_wrap.obj Client.lib 
-	#cl.exe /LD secrethub_wrap.obj Client.lib /OUT:_secrethub.dll
-	nm C:\hostedtoolcache\windows\PyPy\3.6.9\x86\libs\python36.lib | grep " T _" | sed "s/.* T _//" >> python36.def
-	dlltool --input-def python36.def --dllname python32 --output-lib libpython36.a
-	x86_64-w64-mingw32-gcc -shared -fPIC libpython36.a secrethub_wrap.obj Client.a -o _secrethub.dll
+	cl.exe /LD secrethub_wrap.obj Client.lib /OUT:_secrethub.dll
+	#nm C:\hostedtoolcache\windows\PyPy\3.6.9\x86\libs\python36.lib | grep " T _" | sed "s/.* T _//" >> python36.def
+	#dlltool --input-def python36.def --dllname python32 --output-lib libpython36.a
+	#x86_64-w64-mingw32-gcc -shared -fPIC libpython36.a secrethub_wrap.obj Client.a -o _secrethub.dll
 
 .PHONY: client
 client: $(XGO_DIR)/secrethub_wrapper.go

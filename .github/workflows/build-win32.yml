@@ -1,0 +1,42 @@
+name: build-win32
+on: [push]
+jobs:
+  build-win32-dll:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: sudo apt install -y gcc-mingw-w64
+      - run: cd secrethub-xgo && GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
+      - uses: actions/upload-artifact@v2 
+        with: 
+          name: Client.dll
+          path: ./Client.dll
+      - uses: actions/upload-artifact@v2 
+        with: 
+          name: Client.h
+          path: ./Client.h
+  build-win32-client:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - uses: ilammy/msvc-dev-cmd@v1
+        with: 
+          arch: x86
+      - run: lib /def:Client.def /out:Client.lib /machine:x86
+      - uses: actions/download-artifact@v2 
+        with: 
+          name: Client.dll
+          path: ./build/
+      - run: make compile-win
+      - run: dir
+      - uses: actions/upload-artifact@v2
+        with:
+          name: secrethub-python-win32
+          path: .
