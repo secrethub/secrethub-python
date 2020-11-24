@@ -37,7 +37,7 @@ jobs:
           path: ./build/
       - run: cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include
       - run: dir
-      - run: $env:LIBPATH += ";C:\hostedtoolcache\windows\Python\3.8.6\x86\libs" && cl.exe /LD secrethub_wrap.obj Client.lib
+      - run: cl.exe /LD secrethub_wrap.obj Client.lib /link /LIBPATH:C:\hostedtoolcache\windows\Python\3.8.6\x86\libs
       - run: dir
       - uses: actions/upload-artifact@v2
         with:
