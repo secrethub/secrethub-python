@@ -33,7 +33,7 @@ jobs:
           path: ./build/
       - run: Rename-Item -Path "Client32.h" -NewName "Client.h" # Workaround for having edited header files
       - run: cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include
-      - run: cl.exe /LD secrethub_wrap.obj Client.lib /link /LIBPATH:C:\hostedtoolcache\windows\Python\3.8.6\x86\libs
+      - run: cl.exe /LD secrethub_wrap.obj Client.lib /link C:\hostedtoolcache\windows\Python\3.8.6\x86\libs\python3.lib
       - run: Rename-Item -Path "secrethub_wrap.dll" -NewName "_secrethub.pyd"
       - uses: actions/upload-artifact@v2
         with:
@@ -73,7 +73,7 @@ jobs:
           path: ./build/
       - run: Rename-Item -Path "Client64.h" -NewName "Client.h" # Workaround for having edited header files
       - run: cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.8.6\x64\include
-      - run: cl.exe /LD secrethub_wrap.obj Client.lib /link /LIBPATH:C:\hostedtoolcache\windows\Python\3.8.6\x64\libs
+      - run: cl.exe /LD secrethub_wrap.obj Client.lib /link C:\hostedtoolcache\windows\Python\3.8.6\x64\libs\python3.lib
       - run: Rename-Item -Path "secrethub_wrap.dll" -NewName "_secrethub.pyd"
       - uses: actions/upload-artifact@v2
         with:
@@ -81,3 +81,24 @@ jobs:
           path: |
             _secrethub.pyd
             Client.dll
+  test-win64-client:
+    needs: [build-win64-client]
+    runs-on: windows-2019
+    steps:
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.8'
+      - uses: actions/download-artifact@v2
+        with:
+          name: client-dll-win64
+          path: .
+      - uses: actions/download-artifact@v2
+        with:
+          name: secrethub-python-win64
+          path: .
+      - run: dir
+      - run: python -c "import secrethub; client = secrethub.Client(); print(client.read_string('test/test/test'))"
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - run: python -c "import secrethub; client = secrethub.Client(); print(client.read_string('test/test/test'))"
