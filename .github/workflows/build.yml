@@ -20,25 +20,12 @@ jobs:
       # Package
       - run: python -m pip install --upgrade setuptools wheel
       - run: cd package && python setup.py bdist_wheel
-      - uses: actions/upload-artifact@v2
-        with:
-          name: secrethub-python-linux-unrepaired
-          path: package/dist
-  repair-linux-wheel:
-    needs: [build-linux-client]
-    runs-on: ubuntu-20.04
-    container: quay.io/pypa/manylinux1_x86_64
-    steps:
-      - uses: actions/download-artifact@v2
-        with:
-          name: secrethub-python-linux-unrepaired
-          path: .
-      - run: auditwheel show *.whl
-      - run: auditwheel repair *.whl
+      - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux1_x86_64 -c "cd /secrethub && auditwheel show package/dist/*.whl"
+      - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux1_x86_64 -c "cd /secrethub && auditwheel repair package/dist/*.whl"
       - uses: actions/upload-artifact@v2
         with:
           name: secrethub-python-linux
-          path: .
+          path: package/dist
   build-win32-dll:
     runs-on: ubuntu-20.04
     steps:
