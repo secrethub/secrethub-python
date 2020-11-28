@@ -6,7 +6,7 @@ class BinaryDistribution(Distribution):
 
 setup(
     name="secrethub",
-    version="0.0.1",
+    version="0.0.2",
     author="SecretHub",
     description="Python client for the SecretHub Secrets Management API",
     url="https://secrethub.io",
