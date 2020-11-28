@@ -1,6 +1,9 @@
 from setuptools import setup, Distribution
 
 class BinaryDistribution(Distribution):
+    def is_pure(self):
+        return False
+
     def has_ext_modules(foo):
         return True
 

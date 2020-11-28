@@ -14,7 +14,7 @@ jobs:
       - run: gcc -c -O2 -fpic -o secrethub_wrap.o -I/opt/hostedtoolcache/Python/3.9.0/x64/include/python3.9 secrethub_wrap.c
       - run: gcc -shared -fPIC secrethub_wrap.o Client.so -o _secrethub.so
       # Move all files that should be packaged to package dir
-      - run: mv ./Client.so ./package/secrethub/Client.dll
+      - run: mv ./Client.so ./package/secrethub/Client.so
       - run: mv ./secrethub.py ./package/secrethub/secrethub.py
       - run: mv ./_secrethub.so ./package/secrethub/_secrethub.so
       # Package
