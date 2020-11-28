@@ -25,6 +25,7 @@ jobs:
           name: secrethub-python-linux-unrepaired
           path: package/dist
   repair-linux-wheel:
+    runs-on: ubuntu-20.04
     container: quay.io/pypa/manylinux1_x86_64
     steps:
       - uses: actions/download-artifact@v2
