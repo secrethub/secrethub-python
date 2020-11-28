@@ -88,21 +88,3 @@ jobs:
         with:
           name: secrethub-python-win64
           path: package\dist
-
-  test-win64-client:
-    needs: [build-win64-client]
-    runs-on: windows-2019
-    steps:
-      - uses: actions/setup-python@v2
-        with:
-          python-version: '3.9'
-      - uses: actions/download-artifact@v2
-        with:
-          name: client-dll-win64
-          path: .
-      - uses: actions/download-artifact@v2
-        with:
-          name: secrethub-python-win64
-          path: .
-      - run: dir
-      - run: python -c "import secrethub; client = secrethub.Client(); print(client.read_string('test/test/test'))"
