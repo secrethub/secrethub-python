@@ -38,7 +38,7 @@ def find_extensions(directory):
 
 setup(
     name="secrethub",
-    version="0.0.2",
+    version="0.0.3",
     author="SecretHub",
     description="Python client for the SecretHub Secrets Management API",
     url="https://secrethub.io",
