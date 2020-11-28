@@ -12,7 +12,7 @@ setup(
     url="https://secrethub.io",
     packages=['secrethub'],
     package_data={
-        'secrethub': ['Client.dll', '_secrethub.pyd'],
+        'secrethub': ['Client.dll', 'Client.so', '_secrethub.pyd', '_secrethub.so'],
     },
     distclass=BinaryDistribution,
     python_requires='>=3.9',
