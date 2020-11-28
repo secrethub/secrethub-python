@@ -21,7 +21,7 @@ jobs:
       - run: python -m pip install --upgrade setuptools wheel
       - run: cd package && python setup.py bdist_wheel
       - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux2014_x86_64 bash -c "cd /secrethub && auditwheel show package/dist/*.whl"
-      - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux2014_x86_64 bash -c "cd /secrethub && export LD_LIBRARY_PATH=$(pwd)/package/secrethub && auditwheel repair package/dist/*.whl"
+      - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux2014_x86_64 bash -c "cd /secrethub && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$(pwd)/package/secrethub && auditwheel repair package/dist/*.whl"
       - uses: actions/upload-artifact@v2
         with:
           name: secrethub-python-linux
