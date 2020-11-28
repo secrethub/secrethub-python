@@ -1,10 +1,10 @@
-import setuptools
+from setuptools import setup, Distribution
 
 class BinaryDistribution(Distribution):
     def has_ext_modules(foo):
         return True
 
-setuptools.setup(
+setup(
     name="secrethub",
     version="0.0.1",
     author="SecretHub",
