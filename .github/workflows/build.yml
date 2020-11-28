@@ -10,8 +10,8 @@ jobs:
       - run: cd secrethub-xgo && go build -o ../Client.so -buildmode=c-shared secrethub_wrapper.go
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
-      - run: gcc -c -O2 -fpic -o secrethub_wrap.o -I/opt/hostedtoolcache/Python/3.9.0/x64/include/python3.9 secrethub_wrap.c
+          python-version: '3.6.8'
+      - run: gcc -c -O2 -fpic -o secrethub_wrap.o -I/opt/hostedtoolcache/Python/3.6.8/x64/include/python3.6 secrethub_wrap.c
       - run: gcc -shared -fPIC secrethub_wrap.o Client.so -o _secrethub.so
       # Move all files that should be packaged to package dir
       - run: mv ./Client.so ./package/secrethub/Client.so
@@ -20,8 +20,8 @@ jobs:
       # Package
       - run: python -m pip install --upgrade setuptools wheel
       - run: cd package && python setup.py bdist_wheel
-      - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux2010_x86_64 bash -c "cd /secrethub && auditwheel show package/dist/*.whl"
-      - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux2010_x86_64 bash -c "cd /secrethub && auditwheel repair package/dist/*.whl"
+      - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux1_x86_64 bash -c "cd /secrethub && auditwheel show package/dist/*.whl"
+      - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux1_x86_64 bash -c "cd /secrethub && auditwheel repair package/dist/*.whl"
       - uses: actions/upload-artifact@v2
         with:
           name: secrethub-python-linux
