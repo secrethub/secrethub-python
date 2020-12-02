@@ -19,51 +19,43 @@ jobs:
         with:
           name: secrethub-python-linux
           path: wheelhouse
-#  build-win32-dll:
-#    runs-on: ubuntu-20.04
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          submodules: true
-#      - run: sudo apt install -y gcc-mingw-w64
-#      - run: cd secrethub-xgo && GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
-#      - uses: actions/upload-artifact@v2 
-#        with: 
-#          name: client-dll-win32
-#          path: ./Client.dll
-#  build-win32-client:
-#    needs: [build-win32-dll]
-#    runs-on: windows-2019
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          submodules: true
-#      - uses: actions/setup-python@v2
-#        with:
-#          python-version: '3.9'
-#      - uses: ilammy/msvc-dev-cmd@v1
-#        with: 
-#          arch: x86
-#      - run: lib /def:Client.def /out:Client.lib /machine:x86
-#      - uses: actions/download-artifact@v2 
-#        with: 
-#          name: client-dll-win32
-#          path: ./build/
-#      - run: Rename-Item -Path "Client32.h" -NewName "Client.h" # Workaround for having edited header files
-#      - run: cl.exe /c /O2 secrethub_wrap.c /I C:\hostedtoolcache\windows\Python\3.9.0\x64\include
-#      - run: cl.exe /LD secrethub_wrap.obj Client.lib /link /LIBPATH:C:\hostedtoolcache\windows\Python\3.9.0\x86\libs
-#      - run: Rename-Item -Path "secrethub_wrap.dll" -NewName "_secrethub.pyd"
-#      # Move all files that should be packaged to package dir
-#      - run: Move-Item -Path .\build\Client.dll -Destination .\package\secrethub\Client.dll
-#      - run: Move-Item -Path .\secrethub.py -Destination .\package\secrethub\secrethub.py
-#      - run: Move-Item -Path .\_secrethub.pyd -Destination .\package\secrethub\_secrethub.pyd
-#      # Package
-#      - run: python -m pip install --upgrade setuptools wheel
-#      - run: cd package && python setup.py bdist_wheel
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: secrethub-python-win32
-#          path: package\dist
+  build-win32-dll:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: sudo apt install -y gcc-mingw-w64
+      - run: cd secrethub-xgo && GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
+      - uses: actions/upload-artifact@v2
+        with:
+          name: client-dll-win32
+          path: ./Client.dll
+  build-win32-client:
+    needs: [build-win32-dll]
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x86
+      - run: lib /def:Client.def /out:Client.lib /machine:x86
+      - uses: actions/download-artifact@v2
+        with:
+          name: client-dll-win32
+          path: ./
+      - run: Rename-Item -Path "Client32.h" -NewName "Client.h" # Workaround for having edited header files
+      - run: python -m pip install --upgrade setuptools wheel
+      - run: python setup.py bdist_wheel
+      - uses: actions/upload-artifact@v2
+        with:
+          name: secrethub-python-win32
+          path: dist
 #  build-win64-dll:
 #    runs-on: ubuntu-20.04
 #    steps:
