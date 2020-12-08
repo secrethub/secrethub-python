@@ -36,6 +36,6 @@ else:
         package_data={
             'secrethub': ['Client.pyd'],
         },
-        distclass=BinaryDistribution
+        distclass=BinaryDistribution,
         python_requires='>=3.8',
     )
