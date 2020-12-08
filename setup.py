@@ -9,9 +9,9 @@ elif platform == "darwin":
     extra_obj_extension = '.dylib'
 elif platform == "win32":
     extra_obj_extension = '.lib'
-#    package_data = {
-#        'secrethub': ['Client.pyd'],
-#    }
+    package_data = {
+        'secrethub': ['Client.pyd'],
+    }
 
 setup(
     name="secrethub",
