@@ -31,7 +31,7 @@ else:
         author="SecretHub",
         description="Python client for the SecretHub Secrets Management API",
         url="https://secrethub.io",
-        ext_modules=[Extension('_secrethub', ['secrethub.i'], extra_objects=['Client'+extra_obj_extension, 'libClient.dll'])],
+        ext_modules=[Extension('_secrethub', ['secrethub.i'], extra_objects=['Client'+extra_obj_extension, 'Client.dll'])],
         py_modules=['secrethub'],
         distclass=BinaryDistribution,
         python_requires='>=3.8',
