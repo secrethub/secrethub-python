@@ -11,7 +11,7 @@ elif platform == "win32":
 
 setup(
     name="secrethub",
-    version="0.0.7",
+    version="0.0.8",
     author="SecretHub",
     description="Python client for the SecretHub Secrets Management API",
     url="https://secrethub.io",
