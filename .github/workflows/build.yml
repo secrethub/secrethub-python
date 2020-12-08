@@ -55,6 +55,7 @@ jobs:
       - run: python -m pip install --upgrade setuptools wheel pefile machomachomangler
       - run: choco install swig
       - run: python setup.py bdist_wheel --plat-name=win32
+      - run: mkdir wheelhouse
       - run: python utilities/wheel-repair.py ./dist/*.whl -d .
         shell: bash
       - uses: actions/upload-artifact@v2
@@ -97,6 +98,7 @@ jobs:
       - run: python -m pip install --upgrade setuptools wheel pefile machomachomangler
       - run: choco install swig
       - run: python setup.py bdist_wheel --plat-name=win-amd64
+      - run: mkdir wheelhouse
       - run: python utilities/wheel-repair.py ./dist/*.whl -d .
         shell: bash
       - uses: actions/upload-artifact@v2
