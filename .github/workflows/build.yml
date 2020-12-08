@@ -41,7 +41,7 @@ jobs:
       - uses: actions/setup-python@v2
         with:
           python-version: '3.9'
-          architecture: 'x32'
+          architecture: 'x86'
       - uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x86
