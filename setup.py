@@ -34,7 +34,7 @@ else:
         ext_modules=[Extension('_secrethub', ['secrethub.i'], extra_objects=['Client'+extra_obj_extension])],
         py_modules=['secrethub'],
         package_data={
-            'secrethub': ['Client.pyd'],
+            '': ['Client.pyd'],
         },
         distclass=BinaryDistribution,
         python_requires='>=3.8',
