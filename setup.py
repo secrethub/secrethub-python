@@ -21,6 +21,6 @@ setup(
     url="https://secrethub.io",
     ext_modules=[Extension('_secrethub', ['secrethub.i'], extra_objects=['Client'+extension])],
     py_modules=['secrethub'],
-    libraries=['Client'+shared_obj_extension]
+    libraries=['Client'+shared_obj_extension],
     python_requires='>=3.8',
 )
