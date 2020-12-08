@@ -19,7 +19,7 @@ setup(
     author="SecretHub",
     description="Python client for the SecretHub Secrets Management API",
     url="https://secrethub.io",
-    ext_modules=[Extension('_secrethub', ['secrethub.i'], extra_objects=['Client'+extension])],
+    ext_modules=[Extension('_secrethub', ['secrethub.i'], extra_objects=['Client'+extra_obj_extension])],
     py_modules=['secrethub'],
     libraries=['Client'+shared_obj_extension],
     python_requires='>=3.8',
