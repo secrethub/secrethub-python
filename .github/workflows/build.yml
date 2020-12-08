@@ -50,6 +50,7 @@ jobs:
         with:
           name: client-dll-win32
           path: ./
+      - run: Rename-Item -Path "Client.dll" -NewName "Client.pyd"
       - run: Rename-Item -Path "Client32.h" -NewName "Client.h" # Workaround for having edited header files
       - run: python -m pip install --upgrade setuptools wheel
       - run: choco install swig
@@ -89,6 +90,7 @@ jobs:
         with:
           name: client-dll-win64
           path: ./
+      - run: Rename-Item -Path "Client.dll" -NewName "Client.pyd"
       - run: Rename-Item -Path "Client64.h" -NewName "Client.h" # Workaround for having edited header files
       - run: python -m pip install --upgrade setuptools wheel
       - run: choco install swig
