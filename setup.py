@@ -1,13 +1,17 @@
 from setuptools import setup, Extension
 from sys import platform
 
-extension=''
+extra_obj_extension=''
+shared_obj_extension=''
 if platform == "linux" or platform == "linux2":
-    extension = '.so'
+    extra_obj_extension = '.so'
+    shared_obj_extension = '.so'
 elif platform == "darwin":
-    extension = '.dylib'
+    extra_obj_extension = '.dylib'
+    shared_obj_extension = '.dylib'
 elif platform == "win32":
-    extension = '.lib'
+    extra_obj_extension = '.lib'
+    shared_obj_extension = '.dll'
 
 setup(
     name="secrethub",
@@ -17,5 +21,6 @@ setup(
     url="https://secrethub.io",
     ext_modules=[Extension('_secrethub', ['secrethub.i'], extra_objects=['Client'+extension])],
     py_modules=['secrethub'],
+    libraries=['Client'+shared_obj_extension]
     python_requires='>=3.8',
 )
