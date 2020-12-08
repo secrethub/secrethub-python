@@ -52,7 +52,7 @@ jobs:
       - run: Rename-Item -Path "Client32.h" -NewName "Client.h" # Workaround for having edited header files
       - run: python -m pip install --upgrade setuptools wheel
       - run: choco install swig
-      - run: python setup.py bdist_wheel
+      - run: python setup.py bdist_wheel --plat-name=win32
       - uses: actions/upload-artifact@v2
         with:
           name: secrethub-python-win32
