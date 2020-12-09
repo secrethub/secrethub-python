@@ -18,7 +18,7 @@ jobs:
       - run: cd secrethub-xgo && go build -o ../secrethub/Client.dylib -buildmode=c-shared secrethub_wrapper.go
       - run: python setup.py bdist_wheel
       - run: delocate-listdeps --all dist/*.whl
-      - run: export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$(pwd)/secrethub delocate-wheel -v dist/*.whl
+      - run: export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$(pwd)/secrethub && delocate-wheel -v dist/*.whl
       - uses: actions/upload-artifact@v2
         with:
           name: secrethub-python-${{ matrix.python-version }}-linux
