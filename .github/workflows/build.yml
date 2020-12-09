@@ -44,105 +44,105 @@ jobs:
         with:
           name: secrethub-python-${{ matrix.python-version }}-linux
           path: wheelhouse
-#  build-win32-dll:
-#    runs-on: ubuntu-20.04
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          submodules: true
-#      - run: sudo apt install -y gcc-mingw-w64
-#      - run: cd secrethub-xgo && GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: client-dll-win32
-#          path: ./Client.dll
-#  build-win32-client:
-#    needs: [build-win32-dll]
-#    runs-on: windows-2019
-#    strategy:
-#      matrix:
-#        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          submodules: true
-#      - uses: actions/setup-python@v2
-#        with:
-#          python-version: ${{ matrix.python-version }}
-#          architecture: 'x86'
-#      - uses: ilammy/msvc-dev-cmd@v1
-#        with:
-#          arch: x86
-#      - run: lib /def:Client.def /out:Client.lib /machine:x86
-#      - uses: actions/download-artifact@v2
-#        with:
-#          name: client-dll-win32
-#          path: ./
-#      - run: Rename-Item -Path "Client32.h" -NewName "Client.h" # Workaround for having edited header files
-#      - run: Rename-Item -Path "Client.dll" -NewName "CLIENT.dll"
-#      - run: python -m pip install --upgrade setuptools wheel
-#      - run: choco install swig
-#      - run: python setup.py bdist_wheel --plat-name=win32
-#      - run: mkdir wheelhouse
-#      - uses: actions/setup-python@v2
-#        with:
-#          python-version: '3.9'
-#          architecture: 'x86'
-#      - run: python -m pip install pefile machomachomangler
-#      - run: python utilities/wheel-repair.py ./dist/*.whl -d .
-#        shell: bash
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: secrethub-python-${{ matrix.python-version }}-win32
-#          path: wheelhouse
-#  build-win64-dll:
-#    runs-on: ubuntu-20.04
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          submodules: true
-#      - run: sudo apt install -y gcc-mingw-w64
-#      - run: cd secrethub-xgo && GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: client-dll-win64
-#          path: ./Client.dll
-#  build-win64-client:
-#    needs: [build-win64-dll]
-#    runs-on: windows-2019
-#    strategy:
-#      matrix:
-#        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          submodules: true
-#      - uses: actions/setup-python@v2
-#        with:
-#          python-version: ${{ matrix.python-version }}
-#          architecture: 'x64'
-#      - uses: ilammy/msvc-dev-cmd@v1
-#        with:
-#          arch: x64
-#      - run: lib /def:Client.def /out:Client.lib /machine:x64
-#      - uses: actions/download-artifact@v2
-#        with:
-#          name: client-dll-win64
-#          path: ./
-#      - run: Rename-Item -Path "Client64.h" -NewName "Client.h" # Workaround for having edited header files
-#      - run: Rename-Item -Path "Client.dll" -NewName "CLIENT.dll"
-#      - run: python -m pip install --upgrade setuptools wheel
-#      - run: choco install swig
-#      - run: python setup.py bdist_wheel --plat-name=win-amd64
-#      - run: mkdir wheelhouse
-#      - uses: actions/setup-python@v2
-#        with:
-#          python-version: '3.9'
-#          architecture: 'x64'
-#      - run: python -m pip install pefile machomachomangler
-#      - run: python utilities/wheel-repair.py ./dist/*.whl -d .
-#        shell: bash
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: secrethub-python-${{ matrix.python-version }}-win64
-#          path: wheelhouse
+  build-win32-dll:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: sudo apt install -y gcc-mingw-w64
+      - run: cd secrethub-xgo && GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
+      - uses: actions/upload-artifact@v2
+        with:
+          name: client-dll-win32
+          path: ./Client.dll
+  build-win32-client:
+    needs: [build-win32-dll]
+    runs-on: windows-2019
+    strategy:
+      matrix:
+        python-version: [3.9]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: 'x86'
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x86
+      - run: lib /def:Client.def /out:Client.lib /machine:x86
+      - uses: actions/download-artifact@v2
+        with:
+          name: client-dll-win32
+          path: ./secrethub
+      - run: Rename-Item -Path "secrethub/Client32.h" -NewName "secrethub/Client.h" # Workaround for having edited header files
+      - run: Rename-Item -Path "secrethub/Client.dll" -NewName "secrethub/CLIENT.dll"
+      - run: python -m pip install --upgrade setuptools wheel
+      - run: choco install swig
+      - run: python setup.py bdist_wheel --plat-name=win32
+      - run: mkdir wheelhouse
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          architecture: 'x86'
+      - run: python -m pip install pefile machomachomangler
+      - run: python utilities/wheel-repair.py ./dist/*.whl -d .
+        shell: bash
+      - uses: actions/upload-artifact@v2
+        with:
+          name: secrethub-python-${{ matrix.python-version }}-win32
+          path: wheelhouse
+  build-win64-dll:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: sudo apt install -y gcc-mingw-w64
+      - run: cd secrethub-xgo && GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
+      - uses: actions/upload-artifact@v2
+        with:
+          name: client-dll-win64
+          path: ./Client.dll
+  build-win64-client:
+    needs: [build-win64-dll]
+    runs-on: windows-2019
+    strategy:
+      matrix:
+        python-version: [3.9]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: 'x64'
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: x64
+      - run: lib /def:Client.def /out:Client.lib /machine:x64
+      - uses: actions/download-artifact@v2
+        with:
+          name: client-dll-win64
+          path: ./
+      - run: Rename-Item -Path "secrethub/Client64.h" -NewName "secrethub/Client.h" # Workaround for having edited header files
+      - run: Rename-Item -Path "secrethub/Client.dll" -NewName "secrethub/CLIENT.dll"
+      - run: python -m pip install --upgrade setuptools wheel
+      - run: choco install swig
+      - run: python setup.py bdist_wheel --plat-name=win-amd64
+      - run: mkdir wheelhouse
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          architecture: 'x64'
+      - run: python -m pip install pefile machomachomangler
+      - run: python utilities/wheel-repair.py ./dist/*.whl -d .
+        shell: bash
+      - uses: actions/upload-artifact@v2
+        with:
+          name: secrethub-python-${{ matrix.python-version }}-win64
+          path: wheelhouse
