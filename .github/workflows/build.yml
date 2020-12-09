@@ -23,27 +23,27 @@ jobs:
         with:
           name: secrethub-python-${{ matrix.python-version }}-macos
           path: dist
-#  build-linux-client:
-#    runs-on: ubuntu-20.04
-#    strategy:
-#      matrix:
-#        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
-#    steps:
-#      - uses: actions/checkout@v2
-#        with:
-#          submodules: true
-#      - run: cd secrethub-xgo && go build -o ../Client.so -buildmode=c-shared secrethub_wrapper.go
-#      - uses: actions/setup-python@v2
-#        with:
-#          python-version: ${{ matrix.python-version }}
-#      - run: python -m pip install --upgrade setuptools wheel
-#      - run: python setup.py bdist_wheel
-#      - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux2014_x86_64 bash -c "cd /secrethub && auditwheel show dist/*.whl"
-#      - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux2014_x86_64 bash -c "cd /secrethub && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:\$(pwd):/usr/local/lib && auditwheel repair dist/*.whl"
-#      - uses: actions/upload-artifact@v2
-#        with:
-#          name: secrethub-python-${{ matrix.python-version }}-linux
-#          path: wheelhouse
+  build-linux-client:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: cd secrethub-xgo && go build -o ../secrethub/Client.so -buildmode=c-shared secrethub_wrapper.go
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade setuptools wheel
+      - run: python setup.py bdist_wheel
+      - run: docker run -v $(pwd):/secrethub/secrethub quay.io/pypa/manylinux2014_x86_64 bash -c "cd /secrethub && auditwheel show dist/*.whl"
+      - run: docker run -v $(pwd):/secrethub/secrethub quay.io/pypa/manylinux2014_x86_64 bash -c "cd /secrethub && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:\$(pwd):/usr/local/lib && auditwheel repair dist/*.whl"
+      - uses: actions/upload-artifact@v2
+        with:
+          name: secrethub-python-${{ matrix.python-version }}-linux
+          path: wheelhouse
 #  build-win32-dll:
 #    runs-on: ubuntu-20.04
 #    steps:
