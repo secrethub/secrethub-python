@@ -21,7 +21,7 @@ jobs:
       - run: export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$(pwd)/secrethub && delocate-wheel -v dist/*.whl
       - uses: actions/upload-artifact@v2
         with:
-          name: secrethub-python-${{ matrix.python-version }}-linux
+          name: secrethub-python-${{ matrix.python-version }}-macos
           path: dist
 #  build-linux-client:
 #    runs-on: ubuntu-20.04
