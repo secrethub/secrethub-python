@@ -128,7 +128,7 @@ jobs:
       - uses: actions/download-artifact@v2
         with:
           name: client-dll-win64
-          path: ./
+          path: ./secrethub
       - run: Rename-Item -Path "secrethub/Client64.h" -NewName "secrethub/Client.h" # Workaround for having edited header files
       - run: Rename-Item -Path "secrethub/Client.dll" -NewName "secrethub/CLIENT.dll"
       - run: python -m pip install --upgrade setuptools wheel
