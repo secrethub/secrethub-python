@@ -37,13 +37,16 @@ jobs:
   build-win32-client:
     needs: [build-win32-dll]
     runs-on: windows-2019
+    strategy:
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: ${{ matrix.python-version }}
           architecture: 'x86'
       - uses: ilammy/msvc-dev-cmd@v1
         with:
@@ -63,7 +66,7 @@ jobs:
         shell: bash
       - uses: actions/upload-artifact@v2
         with:
-          name: secrethub-python-win32
+          name: secrethub-python-${{ matrix.python-version }}-win32
           path: wheelhouse
   build-win64-dll:
     runs-on: ubuntu-20.04
@@ -80,13 +83,16 @@ jobs:
   build-win64-client:
     needs: [build-win64-dll]
     runs-on: windows-2019
+    strategy:
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
       - uses: actions/setup-python@v2
         with:
-          python-version: '3.9'
+          python-version: ${{ matrix.python-version }}
           architecture: 'x64'
       - uses: ilammy/msvc-dev-cmd@v1
         with:
@@ -106,5 +112,5 @@ jobs:
         shell: bash
       - uses: actions/upload-artifact@v2
         with:
-          name: secrethub-python-win64
+          name: secrethub-python-${{ matrix.python-version }}-win64
           path: wheelhouse
