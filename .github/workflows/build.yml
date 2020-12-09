@@ -15,7 +15,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: true
-      - run: cd secrethub-xgo && go build -o ../Client.dylib -buildmode=c-shared secrethub_wrapper.go
+      - run: cd secrethub-xgo && go build -o ../secrethub/Client.dylib -buildmode=c-shared secrethub_wrapper.go
       - run: python setup.py bdist_wheel
       - run: delocate-listdeps --all dist/*.whl
       - run: delocate-wheel -v dist/*.whl

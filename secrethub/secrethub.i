@@ -35,7 +35,7 @@ PyObject *py_json = NULL;
 
 %rename("%(undercase)s", %$ismember, %$not "match$name"="Client") "";
 
-%include secrethub-xgo/secrethub.i
+%include ../secrethub-xgo/secrethub.i
 
 %pythoncode %{
 import os
