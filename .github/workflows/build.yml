@@ -73,7 +73,7 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x86
-      - run: lib /def:Client.def /out:Client.lib /machine:x86
+      - run: cd secrethub && lib /def:Client.def /out:Client.lib /machine:x86
       - uses: actions/download-artifact@v2
         with:
           name: client-dll-win32
@@ -124,7 +124,7 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: x64
-      - run: lib /def:Client.def /out:Client.lib /machine:x64
+      - run: cd secrethub && lib /def:Client.def /out:Client.lib /machine:x64
       - uses: actions/download-artifact@v2
         with:
           name: client-dll-win64
