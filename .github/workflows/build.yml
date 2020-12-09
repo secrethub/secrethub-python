@@ -78,8 +78,8 @@ jobs:
         with:
           name: client-dll-win32
           path: ./secrethub
-      - run: Rename-Item -Path "secrethub/Client32.h" -NewName "secrethub/Client.h" # Workaround for having edited header files
-      - run: Rename-Item -Path "secrethub/Client.dll" -NewName "secrethub/CLIENT.dll"
+      - run: cd secrethub && Rename-Item -Path "Client32.h" -NewName "Client.h" # Workaround for having edited header files
+      - run: cd secrethub && Rename-Item -Path "Client.dll" -NewName "CLIENT.dll"
       - run: python -m pip install --upgrade setuptools wheel
       - run: choco install swig
       - run: python setup.py bdist_wheel --plat-name=win32
@@ -129,8 +129,8 @@ jobs:
         with:
           name: client-dll-win64
           path: ./secrethub
-      - run: Rename-Item -Path "secrethub/Client64.h" -NewName "secrethub/Client.h" # Workaround for having edited header files
-      - run: Rename-Item -Path "secrethub/Client.dll" -NewName "secrethub/CLIENT.dll"
+      - run: cd secrethub && Rename-Item -Path "Client64.h" -NewName "Client.h" # Workaround for having edited header files
+      - run: cd secrethub && Rename-Item -Path "Client.dll" -NewName "CLIENT.dll"
       - run: python -m pip install --upgrade setuptools wheel
       - run: choco install swig
       - run: python setup.py bdist_wheel --plat-name=win-amd64
