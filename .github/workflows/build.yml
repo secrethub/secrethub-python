@@ -89,7 +89,7 @@ jobs:
           python-version: '3.9'
           architecture: 'x86'
       - run: python -m pip install pefile machomachomangler
-      - run: python utilities/wheel-repair.py ./dist/*.whl -d .
+      - run: python utilities/wheel-repair.py ./dist/*.whl -d ./secrethub
         shell: bash
       - uses: actions/upload-artifact@v2
         with:
@@ -146,7 +146,7 @@ jobs:
           python-version: '3.9'
           architecture: 'x64'
       - run: python -m pip install pefile machomachomangler
-      - run: python utilities/wheel-repair.py ./dist/*.whl -d .
+      - run: python utilities/wheel-repair.py ./dist/*.whl -d ./secrethub
         shell: bash
       - uses: actions/upload-artifact@v2
         with:
