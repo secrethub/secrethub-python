@@ -7,14 +7,14 @@ jobs:
       matrix:
         python-version: [3.9]
     steps:
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade setuptools wheel delocate
       - uses: actions/checkout@v2
         with:
           submodules: true
       - run: cd secrethub-xgo && go build -o ../Client.so -buildmode=c-shared secrethub_wrapper.go
-      - uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      - run: python -m pip install --upgrade setuptools wheel delocate-wheel
       - run: python setup.py bdist_wheel
       - run: export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$(pwd) && delocate-wheel -v dist/*.whl"
       - uses: actions/upload-artifact@v2
