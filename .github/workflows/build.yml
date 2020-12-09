@@ -135,6 +135,12 @@ jobs:
       - run: choco install swig
       - run: python setup.py bdist_wheel --plat-name=win-amd64
       - run: mkdir wheelhouse
+      - uses: actions/upload-artifact@v2
+        with:
+          name: misc
+          path: |
+            secrethub/Client.dll
+            dist
       - uses: actions/setup-python@v2
         with:
           python-version: '3.9'
