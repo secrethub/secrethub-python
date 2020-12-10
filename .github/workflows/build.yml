@@ -1,7 +1,7 @@
 name: build
 on: [push]
 jobs:
-  build-macos-10-14:
+  build-macos-10-14-client:
     runs-on: macos-10.14
     strategy:
       matrix:
@@ -23,7 +23,7 @@ jobs:
         with:
           name: secrethub-python-${{ matrix.python-version }}-macos-10-14
           path: dist
-  build-macos-10-15:
+  build-macos-10-15-client:
     runs-on: macos-10.15
     strategy:
       matrix:
@@ -231,7 +231,7 @@ jobs:
         shell: bash
       - run: python -m unittest test/test.py
   test-macos-10-15:
-    needs: [build-macos-10-15]
+    needs: [build-macos-10-15-client]
     runs-on: macos-10.15
     strategy:
       matrix:
