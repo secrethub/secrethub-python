@@ -1,5 +1,8 @@
 name: build
-on: [push]
+on:
+  push:
+    branches:
+      - master
 jobs:
   build-macos-10-14-client:
     runs-on: macos-10.14
