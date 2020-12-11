@@ -178,7 +178,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: false
-      - run: ls | grep -v test | xargs rm -rf
+      - run: rm -rf secrethub
         shell: bash
       - uses: actions/setup-python@v2
         with:
@@ -202,7 +202,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: false
-      - run: ls | grep -v test | xargs rm -rf
+      - run: rm -rf secrethub
         shell: bash
       - uses: actions/setup-python@v2
         with:
@@ -227,7 +227,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: false
-      - run: ls | grep -v test | xargs rm -rf
+      - run: rm -rf secrethub
         shell: bash
       - uses: actions/setup-python@v2
         with:
@@ -252,7 +252,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: false
-      - run: ls | grep -v test | xargs rm -rf
+      - run: rm -rf secrethub
         shell: bash
       - uses: actions/setup-python@v2
         with:
@@ -275,7 +275,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: false
-      - run: ls | grep -v test | xargs rm -rf
+      - run: rm -rf secrethub
         shell: bash
       - uses: actions/setup-python@v2
         with:
