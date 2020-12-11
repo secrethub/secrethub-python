@@ -178,7 +178,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: false
-      - run: rm -rf -v !(test)
+      - run: ls | grep -v test | xargs rm
         shell: bash
       - uses: actions/setup-python@v2
         with:
@@ -200,7 +200,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: false
-      - run: rm -rf -v !(test)
+      - run: ls | grep -v test | xargs rm
         shell: bash
       - uses: actions/setup-python@v2
         with:
@@ -223,7 +223,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: false
-      - run: rm -rf -v !(test)
+      - run: ls | grep -v test | xargs rm
         shell: bash
       - uses: actions/setup-python@v2
         with:
@@ -246,7 +246,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: false
-      - run: rm -rf -v !(test)
+      - run: ls | grep -v test | xargs rm
         shell: bash
       - uses: actions/setup-python@v2
         with:
@@ -267,7 +267,7 @@ jobs:
       - uses: actions/checkout@v2
         with:
           submodules: false
-      - run: rm -rf -v !(test)
+      - run: ls | grep -v test | xargs rm
         shell: bash
       - uses: actions/setup-python@v2
         with:
