@@ -10,7 +10,7 @@ elif platform == "darwin":
 elif platform == "win32":
     extra_obj_extension = '.lib'
 
-readme = open('README.rst', 'r')
+readme = open('README.md', 'r')
 readme_contents = readme.read()
 readme.close()
 
