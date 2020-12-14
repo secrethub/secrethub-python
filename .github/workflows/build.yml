@@ -98,7 +98,7 @@ jobs:
       - run: choco install swig
       - run: python setup.py bdist_wheel --plat-name=win32
         if: ${{ matrix.arch == 'x86' }}
-      - run: python setup.py bdist_wheel --plat-name=win64
+      - run: python setup.py bdist_wheel --plat-name=win-amd64
         if: ${{ matrix.arch == 'x64' }}
       - run: mkdir wheelhouse
       - uses: actions/setup-python@v2
