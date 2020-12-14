@@ -196,8 +196,7 @@ jobs:
     steps:
       - uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
-          architecture: ${{ matrix.arch }}
+          python-version: 3.9
       - uses: actions/download-artifact@v2
         with:
           name: secrethub-python-${{ matrix.python-version }}-${{ matrix.os }}
