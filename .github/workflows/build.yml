@@ -146,7 +146,7 @@ jobs:
           path: .
         if: ${{ matrix.os == 'windows-2019' }}
       - run: python -m pip install *.whl
-      - run: python -m unittest test/test.py
+      - run: SECRETHUB_TEST_DIR=secrethub/xgo/python/test python -m unittest test/test.py
         env:
           SECRETHUB_CREDENTIAL: ${{ secrets.TEST_SECRETHUB_CREDENTIAL }}
   publish:
