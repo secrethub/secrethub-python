@@ -22,7 +22,7 @@ python -m pip install secrethub
 The package supports Linux, Windows (32 and 64 bit) and MacOS.
 It is built for CPython versions 3.5 and above.
 
-Make sure you have create a SecretHub account and set up a credential on your system before using the library. See the [Credential](#credential) section for more info. 
+Make sure you have created a SecretHub account and set up a credential on your system before using the library. See the [Credential](#credential) section for more info. 
 
 > Note that passphrase protected credentials are not supported by the Python client.
 
