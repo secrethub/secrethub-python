@@ -50,13 +50,14 @@ jobs:
   build-windows-dll:
     runs-on: ubuntu-20.04
     strategy:
-      include:
-        - goarch: '386'
-          cc: 'i686-w64-mingw32-gcc'
-          arch: 'x86'
-        - goarch: 'amd64'
-          cc: 'x86_64-w64-mingw32-gcc'
-          arch: 'x64'
+      matrix:
+        include:
+          - goarch: '386'
+            cc: 'i686-w64-mingw32-gcc'
+            arch: 'x86'
+          - goarch: 'amd64'
+            cc: 'x86_64-w64-mingw32-gcc'
+            arch: 'x64'
     steps:
       - uses: actions/checkout@v2
         with:
@@ -119,9 +120,9 @@ jobs:
 #        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
         python-version: [3.9]
         arch: ['x64']
-      include:
-        - os: windows-2019
-          arch: 'x86'
+        include:
+          - os: windows-2019
+            arch: 'x86'
     steps:
       - uses: actions/checkout@v2
         with:
@@ -154,9 +155,9 @@ jobs:
 #        os: [ubuntu-20.04, windows-2019, macos-10.14, macos-10.15]
 #        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
 #        arch: ['x64']
-#      include:
-#        - os: windows-2019
-#          arch: 'x86'
+#        include:
+#          - os: windows-2019
+#            arch: 'x86'
 #    steps:
 #      - uses: actions/setup-python@v2
 #        with:
