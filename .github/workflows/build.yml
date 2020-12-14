@@ -48,7 +48,7 @@ jobs:
         with:
           name: secrethub-python-${{ matrix.python-version }}-ubuntu-20.04
           path: wheelhouse
-  build-win-dll:
+  build-windows-dll:
     runs-on: ubuntu-20.04
     strategy:
       include:
@@ -68,8 +68,8 @@ jobs:
         with:
           name: client-dll-${{ matrix.arch }}
           path: ./Client.dll
-  build-win32-client:
-    needs: [build-win-dll]
+  build-windows-client:
+    needs: [build-windows-dll]
     runs-on: windows-2019
     strategy:
       matrix:
@@ -112,7 +112,7 @@ jobs:
           name: secrethub-python-${{ matrix.python-version }}-windows-2019-${{ matrix.arch }}
           path: wheelhouse
   test:
-    needs: [build-linux-client, build-win64-client, build-win32-client, build-macos-client]
+    needs: [build-linux-client, build-windows-client, build-macos-client]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
