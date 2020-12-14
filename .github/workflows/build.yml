@@ -159,6 +159,7 @@ jobs:
       - run: python -m pip install *.whl
         shell: bash
       - run: SECRETHUB_TEST_DIR=secrethub/xgo/python/test python -m unittest test/test.py
+        shell: bash
         env:
           SECRETHUB_CREDENTIAL: ${{ secrets.TEST_SECRETHUB_CREDENTIAL }}
   publish:
