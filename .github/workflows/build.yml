@@ -48,20 +48,28 @@ jobs:
         with:
           name: secrethub-python-${{ matrix.python-version }}-ubuntu-20.04
           path: wheelhouse
-  build-win32-dll:
+  build-win-dll:
     runs-on: ubuntu-20.04
+    strategy:
+      include:
+        - goarch: '386'
+          cc: 'i686-w64-mingw32-gcc'
+          arch: 'x86'
+        - goarch: 'amd64'
+          cc: 'x86_64-w64-mingw32-gcc'
+          arch: 'x64'
     steps:
       - uses: actions/checkout@v2
         with:
           submodules: true
       - run: sudo apt install -y gcc-mingw-w64
-      - run: cd secrethub-xgo && GOOS=windows GOARCH=386 CGO_ENABLED=1 CC=i686-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
+      - run: cd secrethub-xgo && GOOS=windows GOARCH=${{ matrix.goarch }} CGO_ENABLED=1 CC=${{ matrix.cc }} go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
       - uses: actions/upload-artifact@v2
         with:
-          name: client-dll-win32
+          name: client-dll-${{ matrix.arch }}
           path: ./Client.dll
   build-win32-client:
-    needs: [build-win32-dll]
+    needs: [build-win-dll]
     runs-on: windows-2019
     strategy:
       matrix:
@@ -80,7 +88,7 @@ jobs:
       - run: cd secrethub && lib /def:Client.def /out:Client.lib /machine:x86
       - uses: actions/download-artifact@v2
         with:
-          name: client-dll-win32
+          name: client-dll-x86
           path: ./secrethub
       - run: cd secrethub && Rename-Item -Path "Client32.h" -NewName "Client.h" # Workaround for having edited header files
       - run: cd secrethub && Rename-Item -Path "Client.dll" -NewName "CLIENT.dll"
@@ -99,20 +107,8 @@ jobs:
         with:
           name: secrethub-python-${{ matrix.python-version }}-windows-2019-x86
           path: wheelhouse
-  build-win64-dll:
-    runs-on: ubuntu-20.04
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
-      - run: sudo apt install -y gcc-mingw-w64
-      - run: cd secrethub-xgo && GOOS=windows GOARCH=amd64 CGO_ENABLED=1 CC=x86_64-w64-mingw32-gcc go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
-      - uses: actions/upload-artifact@v2
-        with:
-          name: client-dll-win64
-          path: ./Client.dll
   build-win64-client:
-    needs: [build-win64-dll]
+    needs: [build-win-dll]
     runs-on: windows-2019
     strategy:
       matrix:
@@ -131,7 +127,7 @@ jobs:
       - run: cd secrethub && lib /def:Client.def /out:Client.lib /machine:x64
       - uses: actions/download-artifact@v2
         with:
-          name: client-dll-win64
+          name: client-dll-x64
           path: ./secrethub
       - run: cd secrethub && Rename-Item -Path "Client64.h" -NewName "Client.h" # Workaround for having edited header files
       - run: cd secrethub && Rename-Item -Path "Client.dll" -NewName "CLIENT.dll"
