@@ -162,6 +162,8 @@ jobs:
           arch: ${{ matrix.arch }}
         if: ${{ matrix.os == 'windows-2019' }}
       - run: python -m pip install --upgrade pip
+      - run: python -m pip install packaging
+      - run: python -c "import packaging.tags; print(list(packaging.tags.sys_tags()))"
       - run: python -m pip install *.whl
         shell: bash
       - run: SECRETHUB_TEST_DIR=secrethub/xgo/python/test python -m unittest test/test.py
