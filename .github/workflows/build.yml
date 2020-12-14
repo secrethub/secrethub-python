@@ -4,10 +4,11 @@ on:
     branches:
       - master
 jobs:
-  build-macos-10-14-client:
-    runs-on: macos-10.14
+  build-macos-client:
+    runs-on: ${{ matrix.os }}
     strategy:
       matrix:
+        os: [macos-10.14, macos-10.15]
         python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
     steps:
       - run: brew install swig
@@ -24,29 +25,7 @@ jobs:
       - run: export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$(pwd)/secrethub && delocate-wheel -v dist/*.whl
       - uses: actions/upload-artifact@v2
         with:
-          name: secrethub-python-${{ matrix.python-version }}-macos-10.14
-          path: dist
-  build-macos-10-15-client:
-    runs-on: macos-10.15
-    strategy:
-      matrix:
-        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
-    steps:
-      - run: brew install swig
-      - uses: actions/setup-python@v2
-        with:
-          python-version: ${{ matrix.python-version }}
-      - run: python -m pip install --upgrade setuptools wheel delocate
-      - uses: actions/checkout@v2
-        with:
-          submodules: true
-      - run: cd secrethub-xgo && go build -o ../secrethub/Client.dylib -buildmode=c-shared secrethub_wrapper.go
-      - run: python setup.py bdist_wheel
-      - run: delocate-listdeps --all dist/*.whl
-      - run: export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$(pwd)/secrethub && delocate-wheel -v dist/*.whl
-      - uses: actions/upload-artifact@v2
-        with:
-          name: secrethub-python-${{ matrix.python-version }}-macos-10.15
+          name: secrethub-python-${{ matrix.python-version }}-${{ matrix.os }}
           path: dist
   build-linux-client:
     runs-on: ubuntu-20.04
@@ -172,7 +151,7 @@ jobs:
           name: secrethub-python-${{ matrix.python-version }}-windows-2019-x64
           path: wheelhouse
   test:
-    needs: [build-linux-client, build-win64-client, build-win32-client, build-macos-10-15-client, build-macos-10-14-client]
+    needs: [build-linux-client, build-win64-client, build-win32-client, build-macos-client]
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
