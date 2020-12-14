@@ -86,7 +86,7 @@ jobs:
       - uses: ilammy/msvc-dev-cmd@v1
         with:
           arch: ${{ matrix.arch }}
-      - run: cd secrethub && lib /def:Client.def /out:Client.lib /machine:x86
+      - run: cd secrethub && lib /def:Client.def /out:Client.lib /machine:${{ matrix.arch }}
       - uses: actions/download-artifact@v2
         with:
           name: client-dll-${{ matrix.arch }}
