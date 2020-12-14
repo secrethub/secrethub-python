@@ -22,7 +22,7 @@ python -m pip install secrethub
 The package supports Linux, Windows (32 and 64 bit) and MacOS.
 It is built for CPython versions 3.5 and above.
 
-Make sure you have create a SecretHub account and set up a credential on your system before using the library. See the [Credential](#credential) section for more info. 
+Make sure you have created a SecretHub account and set up a credential on your system before using the library. See the [Credential](#credential) section for more info. 
 
 > Note that passphrase protected credentials are not supported by the Python client.
 
@@ -131,7 +131,7 @@ You can also provide a credential through the `SECRETHUB_CREDENTIAL` environment
 Come chat with us on [Discord](https://discord.gg/EQcE87s) or email us at [support@secrethub.io](mailto:support@secrethub.io)
 
 ## BETA
-This project is currently in beta and we'd love your feedback! Check out the [issues](https://github.com/secrethub/secrethub-dotnet/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) and feel free suggest cool ideas, use cases, or improvements.
+This project is currently in beta and we'd love your feedback! Check out the [issues](https://github.com/secrethub/secrethub-python/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) and feel free suggest cool ideas, use cases, or improvements.
 
 Because it's still in beta, you can expect to see some changes introduced. Pull requests are very welcome.
 
