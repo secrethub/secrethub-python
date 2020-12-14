@@ -208,7 +208,7 @@ jobs:
           path: .
         if: ${{ matrix.os == 'windows-2019' }}
       - run: python -m pip install twine
-      - uses: secrethub/actions/env-export@v0.1.0
+      - uses: secrethub/actions/env-export@v0.2.1
         env:
           SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
           PYPI_USERNAME: __token__
