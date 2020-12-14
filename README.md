@@ -131,7 +131,7 @@ You can also provide a credential through the `SECRETHUB_CREDENTIAL` environment
 Come chat with us on [Discord](https://discord.gg/EQcE87s) or email us at [support@secrethub.io](mailto:support@secrethub.io)
 
 ## BETA
-This project is currently in beta and we'd love your feedback! Check out the [issues](https://github.com/secrethub/secrethub-dotnet/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) and feel free suggest cool ideas, use cases, or improvements.
+This project is currently in beta and we'd love your feedback! Check out the [issues](https://github.com/secrethub/secrethub-python/issues?q=is%3Aissue+is%3Aopen+sort%3Aupdated-desc) and feel free suggest cool ideas, use cases, or improvements.
 
 Because it's still in beta, you can expect to see some changes introduced. Pull requests are very welcome.
 
