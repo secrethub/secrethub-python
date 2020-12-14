@@ -1,15 +1,14 @@
 name: build
 on:
-  push:
-    branches:
-      - master
+  push
 jobs:
   build-macos-client:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
         os: [macos-10.14, macos-10.15]
-        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+#        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+        python-version: [3.9]
     steps:
       - run: brew install swig
       - uses: actions/setup-python@v2
@@ -117,7 +116,8 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-20.04, windows-2019, macos-10.14, macos-10.15]
-        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+#        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+        python-version: [3.9]
         arch: ['x64']
       include:
         - os: windows-2019
