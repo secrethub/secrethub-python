@@ -106,7 +106,7 @@ jobs:
           python-version: '3.9'
           architecture: ${{ matrix.arch }}
       - run: python -m pip install pefile machomachomangler
-      - run: python utilities/wheel-repair.py ./dist/*.whl -d ./secrethub
+      - run: python utilities/wheel-fix.py ./dist/*.whl ./secrethub/CLIENT.dll ./wheelhouse
         shell: bash
       - uses: actions/upload-artifact@v2
         with:
