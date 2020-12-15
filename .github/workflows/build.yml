@@ -119,18 +119,18 @@ jobs:
         python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
         arch: ['x64']
         include:
-#          - os: windows-2019
-#            python-version: 3.5
-#            arch: 'x86'
-#          - os: windows-2019
-#            python-version: 3.6
-#            arch: 'x86'
-#          - os: windows-2019
-#            python-version: 3.7
-#            arch: 'x86'
-#          - os: windows-2019
-#            python-version: 3.8
-#            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.5
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.6
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.7
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.8
+            arch: 'x86'
           - os: windows-2019
             python-version: 3.9
             arch: 'x86'
@@ -175,18 +175,18 @@ jobs:
         python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
         arch: ['x64']
         include:
-#          - os: windows-2019
-#            python-version: 3.5
-#            arch: 'x86'
-#          - os: windows-2019
-#            python-version: 3.6
-#            arch: 'x86'
-#          - os: windows-2019
-#            python-version: 3.7
-#            arch: 'x86'
-#          - os: windows-2019
-#            python-version: 3.8
-#            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.5
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.6
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.7
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.8
+            arch: 'x86'
           - os: windows-2019
             python-version: 3.9
             arch: 'x86'
