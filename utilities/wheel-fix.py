@@ -23,7 +23,6 @@ def hash_filename(filepath, blocksize=65536):
     return f"{os.path.basename(root)}-{hasher.hexdigest()[:8]}{ext}"
 
 def mangle_filename(old_filename, new_filename, mapping):
-    print(old_filename, new_filename, mapping)
     with open(old_filename, "rb") as f:
         buf = f.read()
 
@@ -64,7 +63,6 @@ shutil.copy(
 )
 
 pyd_files = [f for f in os.listdir(os.path.join(old_wheel_dir, package_name)) if os.path.isfile(os.path.join(old_wheel_dir, package_name, f)) and f.endswith(".pyd")]
-print(pyd_files)
 old_name = os.path.join(old_wheel_dir, package_name, os.path.basename(pyd_files[0]))
 new_name = os.path.join(new_wheel_dir, package_name, os.path.basename(pyd_files[0]))
 mangle_filename(old_name, new_name, mapping)
