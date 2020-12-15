@@ -166,7 +166,7 @@ jobs:
         env:
           SECRETHUB_CREDENTIAL: ${{ secrets.TEST_SECRETHUB_CREDENTIAL }}
   publish:
-    if: github.event_name != 'push' && github.ref == 'refs/heads/main'
+    if: github.event_name != 'push' && github.ref == 'refs/heads/master'
     needs: [test]
     runs-on: ubuntu-20.04
     strategy:
