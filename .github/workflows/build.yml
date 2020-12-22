@@ -171,7 +171,7 @@ jobs:
     runs-on: ubuntu-20.04
     strategy:
       matrix:
-        os: [ubuntu-20.04, windows-2019, macos-10.14, macos-10.15]
+        os: [ubuntu-20.04, windows-2019, macos-10.14, macos-10.15, macos-11.0]
         python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
         arch: ['x64']
         include:
