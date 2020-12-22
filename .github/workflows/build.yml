@@ -1,0 +1,213 @@
+name: build
+on:
+  push
+jobs:
+  build-macos-client:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [macos-10.14, macos-10.15]
+        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+    steps:
+      - run: brew install swig
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade setuptools wheel delocate
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: cd secrethub-xgo && go build -o ../secrethub/Client.dylib -buildmode=c-shared secrethub_wrapper.go
+      - run: python setup.py bdist_wheel
+      - run: delocate-listdeps --all dist/*.whl
+      - run: export DYLD_LIBRARY_PATH=$DYLD_LIBRARY_PATH:$(pwd)/secrethub && delocate-wheel -v dist/*.whl
+      - uses: actions/upload-artifact@v2
+        with:
+          name: secrethub-python-${{ matrix.python-version }}-${{ matrix.os }}
+          path: dist
+  build-linux-client:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: cd secrethub-xgo && go build -o ../secrethub/Client.so -buildmode=c-shared secrethub_wrapper.go
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: python -m pip install --upgrade setuptools wheel
+      - run: python setup.py bdist_wheel
+      - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux2014_x86_64 bash -c "cd /secrethub && auditwheel show dist/*.whl"
+      - run: docker run -v $(pwd):/secrethub quay.io/pypa/manylinux2014_x86_64 bash -c "cd /secrethub && export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:\$(pwd):/usr/local/lib && auditwheel repair dist/*.whl"
+      - uses: actions/upload-artifact@v2
+        with:
+          name: secrethub-python-${{ matrix.python-version }}-ubuntu-20.04
+          path: wheelhouse
+  build-windows-dll:
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        include:
+          - goarch: '386'
+            cc: 'i686-w64-mingw32-gcc'
+            arch: 'x86'
+          - goarch: 'amd64'
+            cc: 'x86_64-w64-mingw32-gcc'
+            arch: 'x64'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - run: sudo apt install -y gcc-mingw-w64
+      - run: cd secrethub-xgo && GOOS=windows GOARCH=${{ matrix.goarch }} CGO_ENABLED=1 CC=${{ matrix.cc }} go build -o ../Client.dll -buildmode=c-shared secrethub_wrapper.go
+      - uses: actions/upload-artifact@v2
+        with:
+          name: client-dll-${{ matrix.arch }}
+          path: ./Client.dll
+  build-windows-client:
+    needs: [build-windows-dll]
+    runs-on: windows-2019
+    strategy:
+      matrix:
+        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+        arch: ['x86', 'x64']
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: true
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: ${{ matrix.arch }}
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.arch }}
+      - run: cd secrethub && lib /def:Client.def /out:Client.lib /machine:${{ matrix.arch }}
+      - uses: actions/download-artifact@v2
+        with:
+          name: client-dll-${{ matrix.arch }}
+          path: ./secrethub
+      - run: cd secrethub && Rename-Item -Path "Client-${{ matrix.arch }}.h" -NewName "Client.h" # Workaround for having edited header files
+      - run: cd secrethub && Rename-Item -Path "Client.dll" -NewName "CLIENT.dll"
+      - run: python -m pip install --upgrade setuptools wheel
+      - run: choco install swig
+      - run: python setup.py bdist_wheel --plat-name=win32
+        if: ${{ matrix.arch == 'x86' }}
+      - run: python setup.py bdist_wheel --plat-name=win-amd64
+        if: ${{ matrix.arch == 'x64' }}
+      - run: mkdir wheelhouse
+      - uses: actions/setup-python@v2
+        with:
+          python-version: '3.9'
+          architecture: ${{ matrix.arch }}
+      - run: python -m pip install pefile machomachomangler
+      - run: git clone https://github.com/secrethub/python-wheel-repair.git
+      - run: python python-wheel-repair/wheel-repair.py ./dist/*.whl ./secrethub/CLIENT.dll ./wheelhouse
+        shell: bash
+      - uses: actions/upload-artifact@v2
+        with:
+          name: secrethub-python-${{ matrix.python-version }}-windows-2019-${{ matrix.arch }}
+          path: wheelhouse
+  test:
+    needs: [build-linux-client, build-windows-client, build-macos-client]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, windows-2019, macos-10.14, macos-10.15]
+        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+        arch: ['x64']
+        include:
+          - os: windows-2019
+            python-version: 3.5
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.6
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.7
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.8
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.9
+            arch: 'x86'
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          submodules: false
+      - run: rm -rf secrethub
+        shell: bash
+      - uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+          architecture: ${{ matrix.arch }}
+      - uses: actions/download-artifact@v2
+        with:
+          name: secrethub-python-${{ matrix.python-version }}-${{ matrix.os }}
+          path: .
+        if: ${{ matrix.os != 'windows-2019' }}
+      - uses: actions/download-artifact@v2
+        with:
+          name: secrethub-python-${{ matrix.python-version }}-${{ matrix.os }}-${{ matrix.arch }}
+          path: .
+        if: ${{ matrix.os == 'windows-2019' }}
+      - uses: ilammy/msvc-dev-cmd@v1
+        with:
+          arch: ${{ matrix.arch }}
+        if: ${{ matrix.os == 'windows-2019' }}
+      - run: python -m pip install --upgrade pip
+      - run: python -m pip install *.whl
+        shell: bash
+      - run: SECRETHUB_TEST_DIR=secrethub/xgo/python/test python -m unittest test/test.py
+        shell: bash
+        env:
+          SECRETHUB_CREDENTIAL: ${{ secrets.TEST_SECRETHUB_CREDENTIAL }}
+  publish:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+    needs: [test]
+    runs-on: ubuntu-20.04
+    strategy:
+      matrix:
+        os: [ubuntu-20.04, windows-2019, macos-10.14, macos-10.15]
+        python-version: [3.5, 3.6, 3.7, 3.8, 3.9]
+        arch: ['x64']
+        include:
+          - os: windows-2019
+            python-version: 3.5
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.6
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.7
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.8
+            arch: 'x86'
+          - os: windows-2019
+            python-version: 3.9
+            arch: 'x86'
+    steps:
+      - uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+      - uses: actions/download-artifact@v2
+        with:
+          name: secrethub-python-${{ matrix.python-version }}-${{ matrix.os }}
+          path: .
+        if: ${{ matrix.os != 'windows-2019' }}
+      - uses: actions/download-artifact@v2
+        with:
+          name: secrethub-python-${{ matrix.python-version }}-${{ matrix.os }}-${{ matrix.arch }}
+          path: .
+        if: ${{ matrix.os == 'windows-2019' }}
+      - run: python -m pip install twine
+      - uses: secrethub/actions/env-export@v0.2.1
+        env:
+          SECRETHUB_CREDENTIAL: ${{ secrets.SECRETHUB_CREDENTIAL }}
+          PYPI_PASSWORD: secrethub://secrethub/xgo/python/pypi/api-token
+      - run: python -m twine upload -u __token__ -p $PYPI_PASSWORD *

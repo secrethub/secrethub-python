@@ -1,0 +1,3 @@
+[submodule "secrethub-xgo"]
+	path = secrethub-xgo
+	url = git@github.com:secrethub/secrethub-xgo.git
