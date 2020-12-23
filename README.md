@@ -35,12 +35,18 @@ client = secrethub.Client()
 
 After you have your client, you can call the following methods:
 
+### `read_string(path)`
+Retrieve a secret value as a string.
+```python
+secret = client.read_string("path/to/secret")
+```
+
 ### `read(path)`
 Retrieve a secret, including all its metadata.
 ```python
 secret = client.read("path/to/secret");
 ```
-The returned object is of the `secrethub.SecretVersion` type and it represents a version of a secret with sensitive data.
+The returned object is of the `secrethub.SecretVersion` type and it represents a version of a secret with the sensitive value stored in the `data` field.
 It provides the following fields:
   - secret_version_id
   - secret
@@ -49,12 +55,6 @@ It provides the following fields:
   - created_at
   - status
 
-### `read_string(path)`
-Retrieve a secret as a string.
-```python
-secret = client.read_string("path/to/secret")
-```
-
 ### `exists(path)`
 Check if a secret exists at `path`.
 ```python
@@ -62,7 +62,7 @@ secret_exists = client.exists("path/to/secret")
 ```
 
 ### `write(path, secret)`
-Write a secret to a given `path`.
+Write a secret value to a given `path`.
 ```python
 client.write("path/to/secret", "secret_value")
 ```
