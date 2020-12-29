@@ -3,12 +3,10 @@
 %{
 #include "datetime.h"
 PyObject *py_uuid = NULL;
-PyObject *py_json = NULL;
 %}
 
 %init %{
     py_uuid = PyImport_ImportModule("uuid");
-    py_json = PyImport_ImportModule("json");
     PyDateTime_IMPORT;
 %}
 
@@ -23,13 +21,6 @@ PyObject *py_json = NULL;
     PyObject *uuid_ctor = PyObject_GetAttrString(py_uuid, "UUID");
     PyObject *str = PyUnicode_DecodeUTF8($1, strlen($1), NULL);
     $result = PyObject_CallFunctionObjArgs(uuid_ctor, str, NULL);
-    Py_DECREF(str);
-}
-
-%typemap(out) char* ResolveEnv {
-    PyObject *json_loads = PyObject_GetAttrString(py_json, "loads");
-    PyObject *str = PyUnicode_DecodeUTF8($1, strlen($1), NULL);
-    $result = PyObject_CallFunctionObjArgs(json_loads, str, NULL);
     Py_DECREF(str);
 }
 
