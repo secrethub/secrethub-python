@@ -23,5 +23,11 @@ class TestSecretHubClient(unittest.TestCase):
         self.assertEqual(client.read_string(secret_name), secret_value)
         client.remove(secret_name)
 
+    def test_resolve_env(self):
+        os.environ['TEST'] = 'secrethub://'+TEST_DIR+'/test'
+        client = secrethub.Client()
+        client.export_env(client.resolve_env())
+        self.assertEqual(os.environ['TEST'], 'foo')
+
 if __name__ == '__main__':
     unittest.main()

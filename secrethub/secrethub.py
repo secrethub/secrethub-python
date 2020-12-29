@@ -138,5 +138,10 @@ def export_env(self, env):
         os.environ[key] = value
 Client.export_env = export_env
 
+def resolve_env(self):
+    for key, value in os.environ.items():
+        os.environ[key] = self.resolve(value)
+Client.resolve_env = resolve_env
+
 
 
