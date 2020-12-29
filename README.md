@@ -85,7 +85,7 @@ Return a dictionary containing the OS environment with all secret references (`s
 #### Example
 
 ```python
-os.environ['MYSECRET'] = 'secrethub://path/to/secret'
+os.environ['MY_SECRET'] = 'secrethub://path/to/secret'
 os.environ['OTHER_VARIABLE'] = 'some other value'
 
 resolved_env = client.resolve_env()
