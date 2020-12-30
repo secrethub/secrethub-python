@@ -3,12 +3,10 @@
 %{
 #include "datetime.h"
 PyObject *py_uuid = NULL;
-PyObject *py_json = NULL;
 %}
 
 %init %{
     py_uuid = PyImport_ImportModule("uuid");
-    py_json = PyImport_ImportModule("json");
     PyDateTime_IMPORT;
 %}
 
@@ -26,13 +24,6 @@ PyObject *py_json = NULL;
     Py_DECREF(str);
 }
 
-%typemap(out) char* ResolveEnv {
-    PyObject *json_loads = PyObject_GetAttrString(py_json, "loads");
-    PyObject *str = PyUnicode_DecodeUTF8($1, strlen($1), NULL);
-    $result = PyObject_CallFunctionObjArgs(json_loads, str, NULL);
-    Py_DECREF(str);
-}
-
 %rename("%(undercase)s", %$ismember, %$not "match$name"="Client") "";
 
 %include ../secrethub-xgo/secrethub.i
@@ -44,4 +35,11 @@ def export_env(self, env):
     for key, value in env.items():
         os.environ[key] = value
 Client.export_env = export_env
+
+def resolve_env(self):
+    res = {}
+    for key, value in os.environ.items():
+        res[key] = self.resolve(value)
+    return res
+Client.resolve_env = resolve_env
 %}
