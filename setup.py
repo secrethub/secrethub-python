@@ -16,7 +16,7 @@ readme.close()
 
 setup(
     name="secrethub",
-    version="0.1.0",
+    version="0.1.1",
     author="SecretHub",
     author_email="support@secrethub.io",
     license="Apache License Version 2.0",
