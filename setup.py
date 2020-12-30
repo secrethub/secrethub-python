@@ -40,4 +40,8 @@ setup(
         "Programming Language :: Python :: Implementation :: PyPy",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
+    project_urls={
+        'Bug Reports': 'https://github.com/secrethub/secrethub-python/issues',
+        'Source': 'https://github.com/secrethub/secrethub-python/',
+    },
 )
