@@ -16,7 +16,7 @@ readme.close()
 
 setup(
     name="secrethub",
-    version="0.1.0",
+    version="0.1.1",
     author="SecretHub",
     author_email="support@secrethub.io",
     license="Apache License Version 2.0",
@@ -40,4 +40,8 @@ setup(
         "Programming Language :: Python :: Implementation :: PyPy",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
+    project_urls={
+        'Bug Reports': 'https://github.com/secrethub/secrethub-python/issues',
+        'Source': 'https://github.com/secrethub/secrethub-python/',
+    },
 )

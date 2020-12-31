@@ -74,7 +74,7 @@ client.remove("path/to/secret")
 ```
 
 ### `resolve(ref)`
-Fetch the value of a secret from SecretHub, when the `ref` has the format `secrethub://<path>`, otherwise it returns `ref` unchanged.
+Resolve a secret reference tag of the format `secrethub://<path>` and return the corresponding secret value. If `ref` is not a valid reference tag, it returns otherwise it returns `ref` unchanged.
 ```python
 resolved_ref = client.resolve("secrethub://path/to/secret")
 ```
@@ -82,30 +82,38 @@ resolved_ref = client.resolve("secrethub://path/to/secret")
 ### `resolve_env()`
 Return a dictionary containing the OS environment with all secret references (`secrethub://<path>`) replaced by their corresponding secret values.
 
-For example, if the following two environment variables are set:
- - `MY_SECRET=secrethub://path/to/secret`
- - `OTHER_VARIABLE=some-other-value`
+#### Example
 
-Then the following call to `ResolveEnv()`
 ```python
+os.environ['MY_SECRET'] = 'secrethub://path/to/secret'
+os.environ['OTHER_VARIABLE'] = 'some other value'
+
 resolved_env = client.resolve_env()
-```
 
-would lead to the `resolvedEnv` containing the following contents:
-```python
-{
-    'MY_SECRET': 'the value of the secret path/to/secret',
-    'OTHER_VARIABLE': 'some-other-value'
-}
+print(resolved_env)
+# Prints all environment variables with any secret references resolved to their corresponding value
+# {
+#    'MY_SECRET': 'the value of the secret stored at path/to/secret',
+#    'OTHER_VARIABLE': 'some other value'
+# }
+
 ```
 
 ### `export_env(env)`
 Adds the environment variables defined in the `env` dictionary to the environment of the process.
 If any of them are already present in the environment, they will be overwritten.
 
-This method can be used together with `resolve_env` to resolve all secret references in the environment:
+This method can be used together with `resolve_env` to resolve all environment variables with secret references and set them to their corresponding secret value. Note that we recommend you use `client.resolve_env()` for most cases, but if your code reads its configuration from the environment and cannot be adapted to use the result of `client.resolve_env()` directly you can use it together with `export_env()`. 
+
+#### Example
+
 ```python
+os.environ['MY_SECRET'] = 'secrethub://path/to/secret'
+
 client.export_env(client.resolve_env());
+
+print("secret: " + os.environ['MY_SECRET']);
+# Prints the value of the secret stored at path/to/secret.
 ```
 
 ### Exceptions
